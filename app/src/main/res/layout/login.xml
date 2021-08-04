@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="Sign In"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/uname_login"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textView13"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="91dp"
+        android:ems="10"
+        android:hint="User Name"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary" />
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="200dp"
+        android:layout_below="@+id/textView13"
+        android:layout_alignEnd="@+id/uname_login"
+        android:layout_marginEnd="14dp">
+
+        <RadioButton
+            android:id="@+id/doc_rd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Doctor"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/patient_rd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="Patient"
+            android:textSize="18sp" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/password_login"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/uname_login"
+        android:layout_alignStart="@+id/uname_login"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/password_login"
+        android:layout_alignStart="@+id/password_login"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"
+        android:text="LOGIN"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/login"
+        android:layout_alignStart="@+id/login"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:onClick="finishLoginActivity"
+        android:text="CANCEL"
+        android:textColor="@color/white" />
+
+</RelativeLayout>
