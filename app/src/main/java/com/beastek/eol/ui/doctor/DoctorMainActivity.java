@@ -1,5 +1,6 @@
 package com.beastek.eol.ui.doctor;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ import com.beastek.eol.ui.SessionManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// viene de launcheractivity una vez que sabemos que es doctor y está registrado y se logeo bien
+//aplica interfaz on fragmentiteration()
 public class DoctorMainActivity extends AppCompatActivity implements DocDashboardFragmentToActivity {
 
     private String[] drawerTitleArray;
@@ -77,14 +80,19 @@ public class DoctorMainActivity extends AppCompatActivity implements DocDashboar
         drawerTitleArray=getResources().getStringArray(R.array.doc_nav_drawer_items);
         drawerIconsArray=getResources().obtainTypedArray(R.array.doc_nav_drawer_icons);
 
+
         navDrawerItems=new ArrayList<NavDrawerItem>();
 
+        int icono1 = drawerIconsArray.getResourceId(0, -1);
+        @SuppressLint("ResourceType") int icono2 = drawerIconsArray.getResourceId(1, -1);
+        @SuppressLint("ResourceType")  int icono3 = drawerIconsArray.getResourceId(2, -1);
+        @SuppressLint("ResourceType") int icono4 = drawerIconsArray.getResourceId(3, -1);
 
 
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[0], drawerIconsArray.getResourceId(0, -1)));
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[1], drawerIconsArray.getResourceId(1, -1)));
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[2], drawerIconsArray.getResourceId(2, -1)));
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[3], drawerIconsArray.getResourceId(3, -1)));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[0], icono1));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[1], icono2));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[2], icono3));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[3], icono4));
 
         menuListAdapter=new NavigationListAdapter(getApplicationContext(),navDrawerItems);
         drawerList.setAdapter(menuListAdapter);

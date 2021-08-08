@@ -1,5 +1,6 @@
 package com.beastek.eol.data;
 
+// permite esteblecer los valores para LoginInfo  (usuario, password e ID)
 
 public class LoginInfo
 {

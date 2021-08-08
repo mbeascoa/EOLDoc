@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.beastek.eol.R;
 
+// es la primera página que salta después del LauncherActivity, nos lleva a realizar el Registro o Login.
 
 public class HomeActivity extends Activity
 {
@@ -38,12 +39,14 @@ public class HomeActivity extends Activity
         super.onResume();
     }
 
+    //al dar al botón de REGISTRO ejecuta esta acción Registration.class
     public  void gotoRegister(View v)
     {
         Intent intent = new Intent(HomeActivity.this,Registration.class);
         startActivity(intent);
     }
 
+    //al dar al botón de LOGIN ejecuta esta acción LoginActivity.class
     public  void gotoLogin(View v)
     {
         Intent intent = new Intent(HomeActivity.this,LoginActivity.class);

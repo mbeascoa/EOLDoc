@@ -11,6 +11,9 @@ import com.beastek.eol.ui.patient.PatientMainActivity;
 
 import java.util.HashMap;
 
+// esta es la primera actividad que se realiza, lee las preferencias, y mira si es la primera vez
+//que se ejecuta , no tiene asociado un layout. Si nunca se ha ejecutado va a HomeActivity
+
 
 public class LauncherActivity extends Activity
 {

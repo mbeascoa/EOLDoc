@@ -2,6 +2,7 @@ package com.beastek.eol.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+//import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.beastek.eol.R;
 import com.beastek.eol.data.LoginInfo;
@@ -34,6 +36,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+//página para hacer el LOGIN, viene del LaunchAtivity.class inicialmente
 
 public class LoginActivity extends Activity
 {
@@ -44,6 +47,15 @@ public class LoginActivity extends Activity
     AlertDialogManager alert = new AlertDialogManager();
     SessionManager session;
 
+    //variables para los mensajes....
+    //Resources res = getResources();
+    //String loginfailed= res.getString(R.string.msg_login_failed);
+    String loginfailed = "Login failed,,...";
+    //String enteruserpassword = res.getString(R.string.msg_enter_user_password);
+    String enteruserpassword= "Enter user name and password";
+    //String errusernamepasswordincorrect = res.getString(R.string.err_username_password_incorrect);
+    String errusernamepasswordincorrect = "Username/Password is incorrect";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -53,22 +65,23 @@ public class LoginActivity extends Activity
         System.out.println("Inside login activity");
         //System.setProperty("http.keepAlive", "false");
 
+
         session = new SessionManager(getApplicationContext());
 
         txtUsername = (EditText) findViewById(R.id.uname_login);
         txtPassword = (EditText) findViewById(R.id.password_login);
         RadioButton rd1 = (RadioButton) findViewById(R.id.doc_rd);
         RadioButton rd2 = (RadioButton) findViewById(R.id.patient_rd);
-
-        //Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+        //String uls =getgetString(R.string.msg_user_login_state);
+        Toast.makeText(getApplicationContext(), "User Login State"+ session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         btnLogin = (Button) findViewById(R.id.login);
 
-
+        //al presionar el botón de LOGIN , captura usuario, password, si es doctor o paciente,
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View view) {
 
 
                 String username = txtUsername.getText().toString();
@@ -78,22 +91,23 @@ public class LoginActivity extends Activity
                 RadioButton rd2 = (RadioButton) findViewById(R.id.patient_rd);
 
 
-                LoginInfo L = new LoginInfo();
+                LoginInfo loginInfo = new LoginInfo();
 
                 if (username.trim().length() > 0 && password.trim().length() > 0)
                 {
-                    L.setUsername(username);
-                    L.setPassword(password);
+                    loginInfo.setUsername(username);
+                    loginInfo.setPassword(password);
+                    //si es doctor ejecuta login como doctor
                     if (rd1.isChecked())
-                        new AsyncTaskLoginDoc().execute(L);
+                        new AsyncTaskLoginDoc().execute(loginInfo);
+                        //si es paciente ejecuta login como paciente
                     else
-                        new AsyncTaskLoginPatient().execute(L);
+                        new AsyncTaskLoginPatient().execute(loginInfo);
                 }
 
                 else
                 {
-
-                    alert.showAlertDialog(LoginActivity.this, "Login failed..", "Please enter username and password", false);
+                    alert.showAlertDialog(LoginActivity.this, loginfailed, enteruserpassword, false);
                 }
 
             }
@@ -101,6 +115,24 @@ public class LoginActivity extends Activity
         });
     }
 
+    /*Android SDK contiene una clase llamada JSONReader, que nos permite poder analizar y consumir los documentos JSON.
+
+    Para crear una instancia nueva de la clase JSONReader, debemos pasar un objeto de la clase InputStreamReader con los datos JSON a su constructor.
+
+    También existen objetos JSONObject y JSONArray que son los que utilizaremos  para extraer los datos de un servicio RestFul.
+
+    Para poder realizar peticiones a los servicios de internet necesitamos utilizar una clase asíncrona que llamará al servicio y administrará la petición,
+    ya que Android impide realizar llamadas de red en el hilo principal de la aplicación.
+
+    Dicha clase heredará de AsyncTask para ejecutar acciones asíncronas.
+
+    Debemos sobrescribir dos métodos:
+
+    doInBackground: Realizará las acciones que necesitemos al leer el servicio.
+
+    onPostExecute: Se ejecuta una vez que se ha finalizado de leer el servicio.
+
+     */
     public class AsyncTaskLoginDoc extends AsyncTask<LoginInfo, String, LoginInfo> {
 
         HttpResponse response;
@@ -160,28 +192,30 @@ public class LoginActivity extends Activity
             }
             catch(Exception x)
             {
-                throw new RuntimeException("Error from authenticate doc api",x);
+                String errauth = getString(R.string.err_authenticate_doc_api);
+                throw new RuntimeException(errauth,x);
             }
             return params[0];
         }
 
         @Override
-        protected void onPostExecute(LoginInfo L)
+        protected void onPostExecute(LoginInfo loginInfo)
         {
-            super.onPostExecute(L);
+            super.onPostExecute(loginInfo);
             String userID;
-            userID = String.valueOf(L.ID);
-            if(L.ID != 0)
+            userID = String.valueOf(loginInfo.ID);
+            if(loginInfo.ID != 0)
             {
                 session = new SessionManager(getApplicationContext());
-                session.createLoginSession(L.Username, userID, "Doctor");
+                session.createLoginSession(loginInfo.Username, userID, "Doctor");
                 Intent i = new Intent(getApplicationContext(), LauncherActivity.class); //ToDo doctor dashboard
                 startActivity(i);
                 finish();
             }
             else
             {
-                alert.showAlertDialog(LoginActivity.this, "Login failed..", "Username/Password is incorrect", false);
+
+                alert.showAlertDialog(LoginActivity.this, loginfailed, errusernamepasswordincorrect, false);
             }
         }
 
@@ -344,4 +378,5 @@ public class LoginActivity extends Activity
     }
 
 }
+
 

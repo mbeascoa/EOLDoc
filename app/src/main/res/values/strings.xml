@@ -45,7 +45,7 @@
         <item>Sources</item>
         <item>Log Out</item>
     </string-array>
-    <array name="pat_nav_drawer_icons">
+    <integer-array name="pat_nav_drawer_icons">
         <item>@drawable/menu_home</item>
         <item>@drawable/ic_appointment</item>
         <item>@drawable/ic_doctor</item>
@@ -54,7 +54,7 @@
         <item>@drawable/ic_contact</item>
         <item>@drawable/ic_sources</item>
         <item>@drawable/ic_logout</item>
-    </array>
+    </integer-array>
 
 
     <!--Patient Dashboard fragment-->
@@ -219,6 +219,17 @@
 
     <!--Patient Health Data Requests-->
     <string name="patient_health_req_title">Health Data Requests</string>
+    <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+    <string name="to">To</string>
+    <string name="entidades_online">OnLine Entities</string>
+    <string name="welcome">Welcome</string>
+    <string name="msg_user_login_state">User Login State</string>
+    <string name="msg_login_failed">Login failed......</string>
+    <string name="msg_enter_user_password">Please enter username and password</string>
+    <string name="err_authenticate_doc_api">Error from authenticate doc api</string>
+    <string name="err_username_password_incorrect">Username/Password is incorrect</string>
+    <string name="home">Home</string>
 
 
 </resources>

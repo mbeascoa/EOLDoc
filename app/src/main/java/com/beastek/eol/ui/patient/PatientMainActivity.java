@@ -1,6 +1,7 @@
 package com.beastek.eol.ui.patient;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -53,6 +54,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+
+
+// viene de launcheractivity una vez que sabemos que es paciente y está registrado y se logeo bien
 
 public class PatientMainActivity extends AppCompatActivity implements PatientDashboardFragmentToActivity {
 
@@ -145,6 +149,8 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
     // verificamos los permisos para enviar SMS y localización.
 
     private void verificarPermisos() {
+
+        //si estamos en versiones iguales o superiores a la M
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_DENIED &&
@@ -153,9 +159,10 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
                 // Should we show an explanation?
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.ACCESS_FINE_LOCATION) && ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.ACCESS_FINE_LOCATION) && ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.SEND_SMS)) {
+                        Manifest.permission.SEND_SMS) && ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION) && ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.ACCESS_FINE_LOCATION)) {
+
 
                     // Show an explanation to the user *asynchronously* -- don't block
                     // this thread waiting for the user's response! After the user
@@ -182,7 +189,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         }
     }
 
-//  ===========   Establecemos los listeners ===================================
+    //  ===========   Establecemos los listeners ===================================
     private void setListeners() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         textViewToolbarTitle = (TextView) findViewById(R.id.toolbar_title);
@@ -195,16 +202,26 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         drawerTitleArray = getResources().getStringArray(R.array.pat_nav_drawer_items);
         drawerIconsArray = getResources().obtainTypedArray(R.array.pat_nav_drawer_icons);
 
+
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[0], drawerIconsArray.getResourceId(0, -1)));
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[1], drawerIconsArray.getResourceId(1, -1)));
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[2], drawerIconsArray.getResourceId(2, -1)));
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[3], drawerIconsArray.getResourceId(3, -1)));
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[4], drawerIconsArray.getResourceId(4, -1)));
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[5], drawerIconsArray.getResourceId(5, -1)));
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[6], drawerIconsArray.getResourceId(6, -1)));
-        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[7], drawerIconsArray.getResourceId(7, -1)));
+        int icono1 = drawerIconsArray.getResourceId(0, -1);
+        @SuppressLint("ResourceType") int icono2 = drawerIconsArray.getResourceId(1, -1);
+        @SuppressLint("ResourceType")  int icono3 = drawerIconsArray.getResourceId(2, -1);
+        @SuppressLint("ResourceType") int icono4 = drawerIconsArray.getResourceId(3, -1);
+        @SuppressLint("ResourceType") int icono5 = drawerIconsArray.getResourceId(4, -1);
+        @SuppressLint("ResourceType") int icono6 = drawerIconsArray.getResourceId(5, -1);
+        @SuppressLint("ResourceType") int icono7 = drawerIconsArray.getResourceId(6, -1);
+        @SuppressLint("ResourceType") int icono8 = drawerIconsArray.getResourceId(7, -1);
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[0], icono1));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[1], icono2));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[2], icono3));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[3], icono4));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[4], icono5));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[5], icono6));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[6], icono7));
+        navDrawerItems.add(new NavDrawerItem(drawerTitleArray[7], icono8));
+
         drawerIconsArray.recycle();
         menuListAdapter = new NavigationListAdapter(getApplicationContext(), navDrawerItems);
         drawerList.setAdapter(menuListAdapter);
@@ -373,7 +390,45 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
     public ArrayList<String> getLocation() {
 
-    Location currentlocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        //si estamos en versiones iguales o superiores a la M
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (  (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) &&
+                    (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) ) {
+
+                // Should we show an explanation?
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION) &&
+                        ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+
+                    // Show an explanation to the user *asynchronously* -- don't block
+                    // this thread waiting for the user's response! After the user
+                    // sees the explanation, try again to request the permission.
+
+                } else {
+                    // No explanation needed, we can request the permission.
+
+                    Log.d("permission", "permission denied to SEND_SMS - requesting it");
+                    String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+
+                    ActivityCompat.requestPermissions(this, permissions, PERMISSION_REQUEST_CODE);
+
+                    //ActivityCompat.requestPermissions(this,
+                    //        new String[]{Manifest.permission.READ_CONTACTS},
+                    //        1);    está definido con la variable PERMISSION_REQUEST_CODE
+
+                    // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                    // app-defined int constant. The callback method gets the
+                    // result of the request.
+
+                }
+            }
+        }
+
+        Location currentlocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         Double lat = currentlocation.getLatitude();
         Double lng = currentlocation.getLongitude();
         String lat_str = lat.toString();
@@ -470,5 +525,4 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
             }
         }
     }
-
 }
