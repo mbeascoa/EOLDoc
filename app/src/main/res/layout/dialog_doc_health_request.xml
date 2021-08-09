@@ -15,8 +15,9 @@
         android:id="@+id/edit_dialog_health_req_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/et_padding"
         android:layout_marginLeft="@dimen/et_padding"
-        android:layout_marginStart="@dimen/et_padding"/>
+        android:minHeight="48dp" />
 
 
 

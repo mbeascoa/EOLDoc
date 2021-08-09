@@ -24,7 +24,8 @@
         <EditText
             android:id="@+id/edit_apmt_desc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:minHeight="48dp" />
 
 
         <TextView
@@ -37,8 +38,9 @@
         <EditText
             android:id="@+id/edit_apmt_date"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="MM/DD/YYYY hh:mm:ss"
-            android:layout_height="wrap_content" />
+            android:minHeight="48dp" />
 
         <TextView
             android:layout_width="match_parent"

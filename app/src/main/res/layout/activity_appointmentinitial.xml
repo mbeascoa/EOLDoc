@@ -16,14 +16,14 @@
         <Button
             android:id="@+id/backECIntialButton"
             android:layout_width="80dp"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@color/colorPrimary"
-            android:text ="Back"
+            android:onClick="backFromAppointmentinitial"
+            android:text="Back"
             android:textColor="@color/white"
-            android:textSize="15dp"
-            android:onClick="backFromAppointmentinitial"/>
+            android:textSize="15dp" />
 
         <TextView
             android:paddingTop="30dp"

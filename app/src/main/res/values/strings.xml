@@ -60,7 +60,7 @@
     <!--Patient Dashboard fragment-->
     <string name="fitbit_title">Fitbit</string>
     <string name="call_emergency">Call Emergency Contact</string>
-    <string name="call_911">Call 911</string>
+    <string name="call_112">Call 112</string>
 
 
     <!--Source Activity-->
@@ -96,7 +96,7 @@
     <string name="appt_status_requested">Requested</string>
 
     <string name="apmt_dialog_title">Appointment</string>
-    <string name="apmt_dialog_btn_ok">ok</string>
+    <string name="apmt_dialog_btn_ok">OK</string>
     <string name="apmt_success_msg">Appointment status is updated successfully</string>
     <string name="apmt_failure_msg">Your response is not updated. Please try again!</string>
 

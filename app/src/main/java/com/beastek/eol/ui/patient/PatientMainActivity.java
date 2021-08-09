@@ -307,34 +307,34 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
     public void displayActivity(int position) {
         switch (position) {
-            case 1:
+            case 1:  //Appointments
                 intent = new Intent(this, PatientAppointmentActivity.class);
                 intent.putExtra("PatientId", patient_id);
                 startActivity(intent);
                 break;
-            case 2:
+            case 2:  // Doctors
                 intent = new Intent(PatientMainActivity.this, DoctorActivity.class);
                 startActivity(intent);
                 break;
-            case 3:
+            case 3: //Reminders
                 intent = new Intent(PatientMainActivity.this, ReminderMainActivity.class);
                 startActivity(intent);
                 break;
-            case 4:
+            case 4: //Health Data Requests
                 intent = new Intent(PatientMainActivity.this, ActivityHealthDataRequests.class);
                 startActivity(intent);
                 break;
-            case 5:
+            case 5:  //Emergency Contact
                 intent = new Intent(this, ManageEmergencyContactActivity.class);
                 intent.putExtra("PatientId", patient_id);
                 startActivity(intent);
                 break;
-            case 6:
+            case 6:   //sources
                 Intent intent = new Intent(PatientMainActivity.this, PatientSourceActivity.class);
                 startActivity(intent);
                 break;
             case 7:
-                sessionManager.logoutUser();
+                sessionManager.logoutUser();  //logout
                 break;
         }
 

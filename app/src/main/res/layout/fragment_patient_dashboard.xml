@@ -25,7 +25,7 @@
             android:layout_margin="@dimen/btn_padding"
             android:background="@color/colorPrimary"
             android:textColor="@color/colorWhite"
-            android:text="@string/call_911"/>
+            android:text="@string/call_112"/>
 
     </LinearLayout>
 
@@ -52,12 +52,12 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:background="@color/colorGreyDark"/>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_fitbit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
