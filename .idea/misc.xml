@@ -12,7 +12,7 @@
         <entry key="app/src/main/res/layout/activity_appointment_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_appointmentinitial.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_appointmentlist.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_doc.xml" value="0.128125" />
+        <entry key="app/src/main/res/layout/activity_doc.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_doctor_appointment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_doctor_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_doctor_main.xml" value="0.25052083333333336" />

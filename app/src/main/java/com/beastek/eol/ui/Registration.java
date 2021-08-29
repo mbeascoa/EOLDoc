@@ -130,7 +130,8 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
     {
+        int mont = month+1;
         EditText dob = (EditText)findViewById(R.id.DOB);
-        dob.setText(dayOfMonth+ "/" +month+1+ "/" +year);
+        dob.setText(dayOfMonth+ "/" +mont+ "/" +year);
     }
 }

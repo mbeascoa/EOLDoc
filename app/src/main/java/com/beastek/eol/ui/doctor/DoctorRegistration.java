@@ -32,7 +32,7 @@ import org.json.JSONObject;
 
 public class DoctorRegistration extends AppCompatActivity {
 
-    private int uniqueDoctorId = 0;
+    private int uniqueDoctorId = 1;
 
 
     AlertDialogManager alert = new AlertDialogManager();
@@ -77,7 +77,7 @@ public class DoctorRegistration extends AppCompatActivity {
         EditText li =(EditText)findViewById(R.id.license);
         EditText cli = (EditText)findViewById(R.id.clinic);
         EditText un =(EditText)findViewById(R.id.uname_doc);
-        EditText pass = (EditText)findViewById(R.id.password_patient);
+        EditText pass = (EditText)findViewById(R.id.password_doctor);
         Spinner spinspeciality = (Spinner)findViewById(R.id.dropDown);
 
 
@@ -130,7 +130,7 @@ public class DoctorRegistration extends AppCompatActivity {
                 requestBody.put("password",password);
                 int docId= getUniqueDoctor();
                 String dId = docId+"";
-                requestBody.put("PatientId", dId);
+                requestBody.put("Doctor ID", dId);
                 String request = requestBody.toString();
                 System.out.println(requestBody);
                 System.out.println(request);

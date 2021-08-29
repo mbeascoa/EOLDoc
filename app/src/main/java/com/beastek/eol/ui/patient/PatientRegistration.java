@@ -30,7 +30,7 @@ import java.util.UUID;
 
 public class PatientRegistration extends Activity
 {
-    int uniquePatientId = 0;
+    int uniquePatientId = 1;
     AlertDialogManager alert = new AlertDialogManager();
 
     @Override

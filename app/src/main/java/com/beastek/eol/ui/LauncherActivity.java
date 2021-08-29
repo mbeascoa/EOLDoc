@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.beastek.eol.ui.doctor.DoctorMainActivity;
 import com.beastek.eol.ui.patient.PatientMainActivity;
@@ -31,21 +32,24 @@ public class LauncherActivity extends Activity
 
 
 
-        if(firstRun == false)//if running for second, third, ....etc,  time, si no es la primera vez lo ejecuta
+        if(firstRun == false)
         {
             SharedPreferences.Editor editor=settings.edit();
             editor.putBoolean("firstRun",true);
             editor.commit();
+
+            //we go to the HomeActivity - register and loging initial page;
             Intent i = new Intent(LauncherActivity.this,HomeActivity.class);
             startActivity(i);
             finish();
         }
-        else //if running for first time
+        else
         {
             //setContentView(R.layout.home);
             // Session class instance
             session = new SessionManager(getApplicationContext());
-            //Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+            //checks if the user has logged in, if not it jumps to LoginActivity in order to log in
             session.checkLogin();
 
             HashMap<String, String> user = session.getUserDetails();

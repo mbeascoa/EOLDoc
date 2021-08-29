@@ -22,12 +22,14 @@ import com.beastek.eol.R;
 import com.beastek.eol.adapter.DocListAdapter;
 import com.beastek.eol.data.DoctorData;
 import com.beastek.eol.data.DoctorStructure;
+import com.beastek.eol.data.PatientAppointmentStructure;
 import com.beastek.eol.ui.SessionManager;
 import com.beastek.eol.utility.ConfigConstant;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,7 +37,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class DoctorFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -138,6 +142,7 @@ public class DoctorFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     public class FetchDoctorListTask extends AsyncTask<String,Void,DoctorData> {
 
+
         private final String LOG_TAG=FetchDoctorListTask.class.getSimpleName();
 
         private DoctorData getDoctorListFromJson(String appJsonStr) throws JSONException {
@@ -149,7 +154,28 @@ public class DoctorFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
             for(int i=0;i<jsonArray.length();i++){
 
+                JSONObject jsonObject=jsonArray.getJSONObject(i);
                 docObj=new DoctorStructure(jsonArray.getJSONObject(i));
+                String nombre= jsonObject.getString("firstname");
+                String apellido = jsonObject.getString("lastname");
+                docObj.setDoctor_fname(nombre);
+                docObj.setDoctor_lname(apellido);
+                String especialidad= jsonObject.getString("speciality");
+                docObj.setDoctor_spec(especialidad);
+                String licencia = jsonObject.getString("licenseNumber");
+                docObj.setDoctorLicense_number(licencia);
+                String fechanacimiento = jsonObject.getString("DOB");
+                docObj.setDoctorDob(fechanacimiento);
+                String identificadordoc = jsonObject.getString("D_ID");
+                docObj.setDoctorDoc_id(identificadordoc);
+                String sexo = jsonObject.getString("gender");
+                docObj.setDoctorGender(sexo);
+                String correo = jsonObject.getString("emailId");
+                docObj.setDoctorEmail(correo);
+                String numerocontacto = jsonObject.getString("contactNo");
+                docObj.setDoctorContact_num(numerocontacto);
+                String direccion = jsonObject.getString("address");
+                docObj.setDoctorAddress(direccion);
                 doctorData.add(docObj);
 
             }
@@ -169,14 +195,16 @@ public class DoctorFragment extends Fragment implements SwipeRefreshLayout.OnRef
             String docListJson=null;
 
             try{
-                String baseUrl= ConfigConstant.BASE_URL;
-                final String PATH_PARAM = ConfigConstant.PATIENT_DOC_LIST_ENDPOINT;
                 final String PAT_ID=params[0];
+                String baseUrl= ConfigConstant.BASE_URL;
+                // PATIENT_DOC_LIST_ENDPOINT="search?sheet=insertdoctor&P_ID="
+                final String PATH_PARAM = ConfigConstant.PATIENT_DOC_LIST_ENDPOINT + PAT_ID;
+                // la cadena correcta es https://sheetdb.io/api/v1/ahhtehepl6e9f/search?sheet=insertdoctor&P_ID=1 para consultar
+                //por el P_ID= 1 ;  que es el PAT_ID
 
 
-
-                Uri docUri= Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(PAT_ID).build();
-
+                //Uri docUri= Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(PAT_ID).build();
+                Uri docUri= Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).build();
                 URL url=new URL(docUri.toString());
 
                 urlConnection = (HttpURLConnection) url.openConnection();

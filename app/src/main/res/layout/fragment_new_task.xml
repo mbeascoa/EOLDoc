@@ -50,15 +50,15 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:inputType="textMultiLine|textCapSentences"
+        app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="@dimen/corner_radius_textinput"
         app:boxCornerRadiusBottomStart="@dimen/corner_radius_textinput"
         app:boxCornerRadiusTopEnd="@dimen/corner_radius_textinput"
         app:boxCornerRadiusTopStart="@dimen/corner_radius_textinput"
-        app:helperText="@string/introduce_task_description"
-        app:boxBackgroundMode="outline"
-        app:endIconMode="clear_text"
+        app:counterEnabled="true"
         app:counterMaxLength="250"
-        app:counterEnabled="true">
+        app:endIconMode="clear_text"
+        app:helperText="@string/introduce_task_description">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/description"

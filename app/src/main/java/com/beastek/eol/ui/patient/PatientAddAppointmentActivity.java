@@ -51,6 +51,7 @@ public class PatientAddAppointmentActivity extends AppCompatActivity implements 
     String patient_id;
     String doctor_id;
     SessionManager sessionManager;
+    private String Url="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,14 +139,18 @@ public class PatientAddAppointmentActivity extends AppCompatActivity implements 
 
             StringBuilder sb=new StringBuilder();
             try {
-                String base_url = ConfigConstant.BASE_URL;
-                final String PATH_PARAM = ConfigConstant.ADD_APPOINTMENT_ENDPOINT;
                 final String doc_id=param[0];
                 final String pat_id=param[1];
+                //ConfigConstant.BASE_URL=https://sheetdb.io/api/v1/ahhtehepl6e9f
+                String base_url = ConfigConstant.ADD_APPOINTMENT_ENDPOINT;
+                final String PATH_PARAM = "";
+                // ConfigConstant.ADD_APPOINTMENT_ENDPOINT = search?sheet=addappointment=
+
 
                 Uri donationUri = Uri.parse(base_url).buildUpon().appendEncodedPath(PATH_PARAM).build();
-
-                URL url = new URL(donationUri.toString());
+                String dona = donationUri.toString();
+                dona = dona.substring(0, dona.length()-1);  //quitamos el / final al hacer el appendEncodedPath(PATH_PARAM).build
+                URL url = new URL(dona);
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("POST");
@@ -168,7 +173,8 @@ public class PatientAddAppointmentActivity extends AppCompatActivity implements 
                     os.close();
 
                     int HttpResult =urlConnection.getResponseCode();
-                    if(HttpResult ==HttpURLConnection.HTTP_OK){
+                    //if(HttpResult ==HttpURLConnection.HTTP_OK){
+                    if(HttpResult==201){
                         return true;
                     }
 
@@ -237,10 +243,14 @@ public class PatientAddAppointmentActivity extends AppCompatActivity implements 
 
                 JSONObject jsonObject=jsonArray.getJSONObject(i);
                 DoctorStructure doctorStructure=new DoctorStructure(jsonObject);
-                String doctor_id=doctorStructure.getDocId();
-                String doctor_name=doctorStructure.getDoctor_fname()+" "+doctorStructure.getDoctor_lname();
 
-                docList.put(doctor_name,doctor_id);
+                //String doctor_id=doctorStructure.getDocId();
+                //String doctor_name=doctorStructure.getDoctor_fname()+" "+doctorStructure.getDoctor_lname();
+                String doctor_id= jsonObject.getString("D_ID");
+                String nombre = jsonObject.getString("firstname");
+                String apellido = jsonObject.getString("lastname");
+                String doctor_name_complete = nombre + " "+ apellido;
+                docList.put(doctor_name_complete,doctor_id);
             }
 
             return docList;
@@ -259,12 +269,19 @@ public class PatientAddAppointmentActivity extends AppCompatActivity implements 
 
             try{
                 String baseUrl= ConfigConstant.BASE_URL;
-                final String PATH_PARAM = ConfigConstant.DOCTOR_LIST_ENDPOINT;
-                String pat_id=params[0];
+                //String doctorlist = ConfigConstant.DOCTOR_LIST_ENDPOINT;
+                final String PATH_PARAM = ConfigConstant.DOCTOR_LIST_ENDPOINT+params[0];
 
-                Uri docUri=Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(pat_id).build();
+
+               // ConfigConstant.DOCTOR_LIST_ENDPOINT = "/search?sheet=insertdoctor&P_ID="
+                // la que funciona es https://sheetdb.io/api/v1/ahhtehepl6e9f/search?sheet=insertdoctor&P_ID=1
+
+
+
+                Uri docUri=Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).build();
 
                 URL url=new URL(docUri.toString());
+
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");

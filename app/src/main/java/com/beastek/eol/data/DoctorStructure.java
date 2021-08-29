@@ -17,7 +17,45 @@ public class DoctorStructure {
     public String contact_num;
     public String address;
 
+    public void setDoctor_fname(String doctor_fname) {
+        this.doctor_fname = doctor_fname;
+    }
 
+    public void setDoctor_lname(String doctor_lname) {
+        this.doctor_lname = doctor_lname;
+    }
+
+    public void setDoctor_spec(String doctor_spec) {
+        this.doctor_spec = doctor_spec;
+    }
+
+    public void setDoctorLicense_number(String license_number) {
+        this.license_number = license_number;
+    }
+
+    public void setDoctorDob(String dob) {
+        this.dob = dob;
+    }
+
+    public void setDoctorDoc_id(String doc_id) {
+        this.doc_id = doc_id;
+    }
+
+    public void setDoctorGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setDoctorEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDoctorContact_num(String contact_num) {
+        this.contact_num = contact_num;
+    }
+
+    public void setDoctorAddress(String address) {
+        this.address = address;
+    }
 
     public String getDoctor_fname() {
         return doctor_fname;

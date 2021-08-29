@@ -34,7 +34,7 @@
         android:layout_height="48dp"
         android:layout_alignBottom="@+id/button5"
         android:layout_marginEnd="26dp"
-        android:layout_toStartOf="@+id/password_patient"
+        android:layout_toStartOf="@+id/password_doctor"
         android:background="@color/colorPrimary"
         android:onClick="finishDoctorRegistration"
         android:text="@string/back"
@@ -45,7 +45,7 @@
         android:id="@+id/button5"
         android:layout_width="100dp"
         android:layout_height="48dp"
-        android:layout_alignEnd="@+id/password_patient"
+        android:layout_alignEnd="@+id/password_doctor"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="42dp"
@@ -68,7 +68,7 @@
         android:textColor="@color/colorPrimary" />
 
     <EditText
-        android:id="@+id/password_patient"
+        android:id="@+id/password_doctor"
         android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_alignStart="@+id/uname_doc"
