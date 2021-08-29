@@ -49,18 +49,15 @@ public class PatientDashboardFragment extends Fragment implements View.OnClickLi
 
     String fToken,userId,currentDate;
 
-    Button btnCallEmergency,btnCall911;
+    Button btnCallEmergency,btnCall112;
 
     public PatientDashboardFragment() {
-
-
 
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
     }
 
@@ -83,8 +80,8 @@ public class PatientDashboardFragment extends Fragment implements View.OnClickLi
 
         btnCallEmergency=(Button)view.findViewById(R.id.btn_call_emergency);
         btnCallEmergency.setOnClickListener(this);
-        btnCall911=(Button)view.findViewById(R.id.btn_call_911);
-        btnCall911.setOnClickListener(this);
+        btnCall112=(Button)view.findViewById(R.id.btn_call_112);
+        btnCall112.setOnClickListener(this);
 
         layoutFitbit=(LinearLayout)view.findViewById(R.id.layout_fitbit);
 
@@ -152,9 +149,9 @@ public class PatientDashboardFragment extends Fragment implements View.OnClickLi
             callIntent.setData(Uri.parse("tel:" + PatientMainActivity.contactNo));
             startActivity(callIntent);
 
-        }else if(id==R.id.btn_call_911){
+        }else if(id==R.id.btn_call_112){
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
-            callIntent.setData(Uri.parse("tel:" +"911"));
+            callIntent.setData(Uri.parse("tel:" +"112"));
             startActivity(callIntent);
         }
     }

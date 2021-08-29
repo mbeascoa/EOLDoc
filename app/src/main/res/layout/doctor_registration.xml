@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
-        android:text="Welcome "
+        android:text="@string/welcome"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="25sp" />
@@ -23,7 +23,7 @@
         android:layout_below="@+id/textView16"
         android:layout_alignStart="@+id/textView16"
         android:layout_marginTop="23dp"
-        android:text="Speciality"
+        android:text="@string/speciality"
         android:textAlignment="textEnd"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp" />
@@ -37,9 +37,9 @@
         android:layout_toStartOf="@+id/password_patient"
         android:background="@color/colorPrimary"
         android:onClick="finishDoctorRegistration"
-        android:text="Back"
+        android:text="@string/back"
         android:textColor="@color/white"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/button5"
@@ -51,13 +51,13 @@
         android:layout_marginBottom="42dp"
         android:background="@color/colorPrimary"
         android:onClick="LoginDoctorRegistration"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         android:textColor="@color/white"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/license"
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_alignTop="@+id/textView16"
         android:layout_marginStart="14dp"
@@ -69,7 +69,7 @@
 
     <EditText
         android:id="@+id/password_patient"
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_alignStart="@+id/uname_doc"
         android:layout_alignTop="@+id/textView19"
@@ -85,7 +85,8 @@
         android:id="@+id/imageView"
         android:layout_alignTop="@+id/textView12"
         android:layout_toEndOf="@+id/textView12"
-        android:layout_marginStart="13dp" />
+        android:layout_marginStart="13dp"
+        android:contentDescription="Estetoscopio" />
 
     <TextView
         android:id="@+id/textView10"
@@ -94,7 +95,7 @@
         android:layout_below="@+id/textView17"
         android:layout_alignStart="@+id/textView17"
         android:layout_marginTop="20dp"
-        android:text="Clinic Address"
+        android:text="@string/clinic_address"
         android:textAlignment="textEnd"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp" />
@@ -106,7 +107,7 @@
         android:layout_below="@+id/textView10"
         android:layout_alignStart="@+id/textView10"
         android:layout_marginTop="20dp"
-        android:text="Username"
+        android:text="@string/username"
         android:textAlignment="textEnd"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp" />
@@ -118,14 +119,14 @@
         android:layout_below="@+id/textView18"
         android:layout_alignStart="@+id/textView18"
         android:layout_marginTop="21dp"
-        android:text="Password"
+        android:text="@string/password"
         android:textAlignment="textEnd"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp" />
 
     <EditText
         android:id="@+id/clinic"
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_alignStart="@+id/license"
         android:layout_alignTop="@+id/textView10"
@@ -136,7 +137,7 @@
 
     <EditText
         android:id="@+id/uname_doc"
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_alignStart="@+id/clinic"
         android:layout_alignTop="@+id/textView18"
@@ -152,7 +153,7 @@
         android:layout_below="@+id/imageView"
         android:layout_alignStart="@+id/textView17"
         android:layout_marginTop="13dp"
-        android:text=" Kindly complete the following form."
+        android:text="@string/kindly_complete_the_following_form"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp" />
 
@@ -168,7 +169,7 @@
 
     <Spinner
         android:id="@+id/dropDown"
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_above="@+id/textView10"
         android:layout_alignStart="@+id/clinic"
@@ -182,7 +183,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="33dp"
         android:layout_marginTop="24dp"
-        android:text="License Number "
+        android:text="@string/license_number"
         android:textAlignment="textEnd"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp" />

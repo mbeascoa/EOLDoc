@@ -30,7 +30,11 @@ public class AppointmentActivity extends AppCompatActivity implements Appointmen
             actionBar.setDisplayUseLogoEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
+  /*
+  When your activity is recreated, such as after a screen rotation or other configuration change,
+  fragments are automatically reattached. By checking if savedInstanceState == null, you ensure
+  that you are not re-adding a fragment that has already been added for you.
+   */
         if(savedInstanceState==null){
             Fragment fragment=new AppointmentFragment();
             FragmentManager fragmentManager=getSupportFragmentManager();

@@ -129,12 +129,11 @@
     <string name="phone_test_unique_id" translatable="false">e5564116db773c7b</string>
     <string name="DoctorSpec">Select Doctor Speciality</string>
 
+    <!--Alarm Array used in AlarmActivity-->
     <string-array name="alarm_array">
         <item>Alarm1</item>
         <item>Alarm2</item>
         <item>Alarm3</item>
-
-
     </string-array>
 
 
@@ -230,6 +229,26 @@
     <string name="err_authenticate_doc_api">Error from authenticate doc api</string>
     <string name="err_username_password_incorrect">Username/Password is incorrect</string>
     <string name="home">Home</string>
+    <string name="sign_in">Sign In</string>
+    <string name="back">Back</string>
+    <string name="clinic_address">Clinic Address</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="kindly_complete_the_following_form">Kindly complete the following form.</string>
+    <string name="license_number">License Number</string>
+    <string name="speciality">Speciality</string>
+
+    <!-- fragment_new_task  en NewTaskActivity.class, using material design texinputlayout and textinput-->
+    <string name="introduce_the_task_title">Introduce the task title</string>
+    <string name="task_title">Introduce the Task Title</string>
+    <string name="introduce_task_description">Introduce a complete task description</string>
+    <string name="lets_get_started">Lets get started!</string>
+    <string name="gender">Gender</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_id">Email ID</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="next">Next</string>
 
 
 </resources>

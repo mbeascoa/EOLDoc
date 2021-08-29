@@ -31,7 +31,7 @@ public class LauncherActivity extends Activity
 
 
 
-        if(firstRun == false)//if running for first time
+        if(firstRun == false)//if running for second, third, ....etc,  time, si no es la primera vez lo ejecuta
         {
             SharedPreferences.Editor editor=settings.edit();
             editor.putBoolean("firstRun",true);
@@ -40,7 +40,7 @@ public class LauncherActivity extends Activity
             startActivity(i);
             finish();
         }
-        else
+        else //if running for first time
         {
             //setContentView(R.layout.home);
             // Session class instance
@@ -67,15 +67,15 @@ public class LauncherActivity extends Activity
 
             if(type != null && type.equals("Doctor"))
             {
-                //ToDo goto doctor dashboard
-                System.out.println("Goto doc dashboard");
+                // go to doctor dashboard  DoctorMainActivity.class
+                System.out.println("Goto DoctorMainActivity");
                 Intent doc_intent=new Intent(LauncherActivity.this,DoctorMainActivity.class);
                 startActivity(doc_intent);
             }
             else if (type != null && type.equals("Patient"))
             {
-                //ToDo goto patient dashboard
-                System.out.println("Goto patient dashboard");
+                //go to patient dasboard PatientMainActivity.class
+                System.out.println("Goto PatientMainActivity");
                 Intent pat_intent=new Intent(LauncherActivity.this,PatientMainActivity.class);
                 startActivity(pat_intent);
             }
@@ -94,7 +94,7 @@ public class LauncherActivity extends Activity
         super.onResume();
     }
 
-    public void onClicklogout(View arg0)
+    public void onClicklogout(View view)
     {
         // Clear the session data
         // This will clear all session data and

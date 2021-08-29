@@ -1,7 +1,5 @@
 package com.beastek.eol.data;
 
-
-
 public class DoctorInfo
 {
     public String fname,lname,DOB,email,gender,contact,license,speciality,address,Username,Password;

@@ -28,6 +28,7 @@ import java.util.HashMap;
 
 // viene de launcheractivity una vez que sabemos que es doctor y está registrado y se logeo bien
 //aplica interfaz on fragmentiteration()
+
 public class DoctorMainActivity extends AppCompatActivity implements DocDashboardFragmentToActivity {
 
     private String[] drawerTitleArray;
@@ -53,7 +54,7 @@ public class DoctorMainActivity extends AppCompatActivity implements DocDashboar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_main);
 
-        setListeners();
+        setListenersUI();
 
         if(savedInstanceState==null){
             Fragment fragment=new DoctorDashboardFragment();
@@ -64,7 +65,7 @@ public class DoctorMainActivity extends AppCompatActivity implements DocDashboar
 
     }
 
-    private void setListeners(){
+    private void setListenersUI(){
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         textViewToolbarTitle=(TextView)findViewById(R.id.toolbar_title);
 
@@ -85,10 +86,10 @@ public class DoctorMainActivity extends AppCompatActivity implements DocDashboar
 
         int icono1 = drawerIconsArray.getResourceId(0, -1);
         @SuppressLint("ResourceType") int icono2 = drawerIconsArray.getResourceId(1, -1);
-        @SuppressLint("ResourceType")  int icono3 = drawerIconsArray.getResourceId(2, -1);
+        @SuppressLint("ResourceType") int icono3 = drawerIconsArray.getResourceId(2, -1);
         @SuppressLint("ResourceType") int icono4 = drawerIconsArray.getResourceId(3, -1);
 
-
+        // the doctor navigation drawer has 4 different options, specified in array-strings.xml
         navDrawerItems.add(new NavDrawerItem(drawerTitleArray[0], icono1));
         navDrawerItems.add(new NavDrawerItem(drawerTitleArray[1], icono2));
         navDrawerItems.add(new NavDrawerItem(drawerTitleArray[2], icono3));
@@ -122,8 +123,8 @@ public class DoctorMainActivity extends AppCompatActivity implements DocDashboar
     public void displayActivity(int position){
         switch (position){
             case 1:
-                Intent intent=new Intent(DoctorMainActivity.this,AppointmentActivity.class);
-                startActivity(intent);
+                Intent appm_act_intent=new Intent(DoctorMainActivity.this,AppointmentActivity.class);
+                startActivity(appm_act_intent);
                 break;
             case 2:
                 Intent pat_intent=new Intent(DoctorMainActivity.this,PatientActivity.class);

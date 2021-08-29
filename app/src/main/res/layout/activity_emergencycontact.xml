@@ -23,8 +23,6 @@
         android:layout_height="wrap_content"
         android:paddingTop ="40dp"
         android:paddingBottom="5sp">
-        1
-
         <EditText
             android:id="@+id/firstnameEditText"
             android:layout_width="180dp"

@@ -33,16 +33,16 @@
             android:text="@string/firstname_label"
             android:textColor="@color/white"
             android:textSize="20dp"/>1
+
         <EditText
             android:id="@+id/firstnameET"
             android:layout_width="180dp"
             android:layout_height="30dp"
+            android:layout_toRightOf="@id/firstname"
             android:layout_weight="60"
             android:background="@color/white"
-            android:layout_toRightOf="@id/firstname"
-            android:textSize="15dp"
             android:textColor="@color/colorPrimary"
-            />
+            android:textSize="15dp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -60,15 +60,15 @@
             android:text="@string/lastname_label"
             android:textColor="@color/white"
             android:textSize="20dp"/>
+
         <EditText
             android:id="@+id/lastnameET"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:background="@color/white"
             android:layout_toRightOf="@id/lastname"
-            android:textSize="15dp"
+            android:background="@color/white"
             android:textColor="@color/colorPrimary"
-            />
+            android:textSize="15dp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -86,15 +86,15 @@
             android:text="@string/EmailID_label"
             android:textColor="@color/white"
             android:textSize="20dp"/>
+
         <EditText
             android:id="@+id/emailIdET"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:background="@color/white"
             android:layout_toRightOf="@id/emailId"
-            android:textSize="15dp"
+            android:background="@color/white"
             android:textColor="@color/colorPrimary"
-            />
+            android:textSize="15dp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -112,15 +112,15 @@
             android:text="@string/Contact_label"
             android:textColor="@color/white"
             android:textSize="20dp"/>
+
         <EditText
             android:id="@+id/contactET"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:background="@color/white"
             android:layout_toRightOf="@id/contact"
-            android:textSize="15dp"
+            android:background="@color/white"
             android:textColor="@color/colorPrimary"
-            />
+            android:textSize="15dp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -138,15 +138,15 @@
             android:text="@string/Address_label"
             android:textColor="@color/white"
             android:textSize="20dp"/>
+
         <EditText
             android:id="@+id/addressET"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:background="@color/white"
             android:layout_toRightOf="@id/address"
-            android:textSize="15dp"
+            android:background="@color/white"
             android:textColor="@color/colorPrimary"
-            />
+            android:textSize="15dp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -164,15 +164,15 @@
             android:text="@string/relation_label"
             android:textColor="@color/white"
             android:textSize="20dp"/>
+
         <EditText
             android:id="@+id/relationET"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:background="@color/white"
             android:layout_toRightOf="@id/relation"
-            android:textSize="15dp"
+            android:background="@color/white"
             android:textColor="@color/colorPrimary"
-            />
+            android:textSize="15dp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

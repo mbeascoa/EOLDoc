@@ -48,7 +48,7 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
 
     public void gotoNext(View v)
     {
-        int str;
+        int str;                                   // is 0 if Doctor, 1 if patient.
         EditText fn =(EditText)findViewById(R.id.fname);
         EditText ln = (EditText)findViewById(R.id.lname);
         EditText dob = (EditText)findViewById(R.id.DOB);
@@ -66,9 +66,9 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
         String contactNo= ph.getText().toString();
 
 
-        if(rd1.isChecked())
+        if(rd1.isChecked())   //if persona registered is a Doctor
             gotoRegistrationDoc(fname,lname,DOB,email,gender,contactNo);
-        else
+        else                  //if person registeres is a patient
             gotoRegistrationPatient(fname,lname,DOB,email,gender,contactNo);
 
         System.out.println("Fname = "+fname);
@@ -76,6 +76,7 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
 
     }
 
+    // 03 Doctor Registration --> DoctorRegistration.class
     public  void gotoRegistrationDoc(String fname,String lname,String DOB,String email,String gender,String contactNo)
     {
         Intent intent = new Intent(Registration.this,DoctorRegistration.class);
@@ -89,6 +90,7 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
         startActivity(intent);
     }
 
+    // 04 Patient Registration --> PatientRegistration.class
     public  void gotoRegistrationPatient(String fname,String lname,String DOB,String email,String gender,String contactNo)
     {
         Intent intent = new Intent(Registration.this,PatientRegistration.class);
@@ -101,6 +103,8 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
         intent.putExtra("contactNo", contactNo);
         startActivity(intent);
     }
+
+    // 05 DatePicker Dialog
     public void showDatePickerDialog(View v)
     {
         DialogFragment newFragment = new DatePickerFragment();
@@ -122,10 +126,11 @@ public class Registration extends AppCompatActivity implements DatePickerDialog.
         Registration.this.finish();
     }
 
+    // 07 Day of Birth stablishmen
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
     {
         EditText dob = (EditText)findViewById(R.id.DOB);
-        dob.setText(month+1 + "/" +dayOfMonth+ "/" +year);
+        dob.setText(dayOfMonth+ "/" +month+1+ "/" +year);
     }
 }

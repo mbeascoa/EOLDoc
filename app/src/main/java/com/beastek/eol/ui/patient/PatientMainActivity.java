@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -79,6 +81,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
 
     private static final int PERMISSION_REQUEST_CODE = 1;
+    private static final int REQUEST_PERMISION_CALL = 100;
     long mStartTimestamp;
     boolean mShouldLog;
     int mCountAccelUpdates;
@@ -107,13 +110,15 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         TextView name = (TextView) findViewById(R.id.username);
         name.setText(patient_name);
 
-        fitbitToken = sessionManager.getFitbitToken();
-        fitbitUid = sessionManager.getFitbitUid();
+        //fitbitToken = sessionManager.getFitbitToken();
+        //fitbitUid = sessionManager.getFitbitUid();
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String strDateTime[] = sdf.format(calendar.getTime()).split(" ");
         currentDate = strDateTime[0];
+
+        /*  we take that part out until fitbit API works, eliminado para practica
 
         if (savedInstanceState == null) {
             Fragment fragment = new PatientDashboardFragment();
@@ -127,8 +132,11 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
             fragmentManager.beginTransaction().replace(R.id.patient_content_frame, fragment).commit();
         }
 
+
+         */
         verificarPermisos();
 
+        /*  eliminado para practica
         mShouldLog = false;
         mCountAccelUpdates = 0;
         mStartTimestamp = System.currentTimeMillis();
@@ -144,7 +152,12 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         //client = new GoogleApi. Builder(this).addApi(AppIndex.API).build();
         // implementation 'com.google.firebase:firebase-appindexing:20.0.0'   en build graddle
+
+
+         */
     }
+
+
 
     // verificamos los permisos para enviar SMS y localización.
 
@@ -154,15 +167,20 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_DENIED &&
+                    (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)==PackageManager.PERMISSION_DENIED) &&
                     (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) &&
                     (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED)) {
 
                 // Should we show an explanation?
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.SEND_SMS) && ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.CALL_PHONE) && ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.ACCESS_COARSE_LOCATION) && ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.ACCESS_FINE_LOCATION)) {
+                        Log.i("TAG", "The user previously rejected the request");
 
+                        Toast.makeText(this, "Es necesario que de permisos para mandar SMS con su localización y poder hacer una llamada de emergencia", Toast.LENGTH_LONG).show();
+;
 
                     // Show an explanation to the user *asynchronously* -- don't block
                     // this thread waiting for the user's response! After the user
@@ -171,8 +189,8 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
                 } else {
                     // No explanation needed, we can request the permission.
 
-                    Log.d("permission", "permission denied to SEND_SMS - requesting it");
-                    String[] permissions = {Manifest.permission.SEND_SMS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+                    Log.d("Permission", "Permission denied to SEND_SMS, CALL, GEOLOCALIZATION - requesting it");
+                    String[] permissions = {Manifest.permission.SEND_SMS, Manifest.permission.CALL_PHONE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
                     ActivityCompat.requestPermissions(this, permissions, PERMISSION_REQUEST_CODE);
 
@@ -180,14 +198,17 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
                     //        new String[]{Manifest.permission.READ_CONTACTS},
                     //        1);    está definido con la variable PERMISSION_REQUEST_CODE
 
-                    // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                    // MY_PERMISSIONS_REQUEST_SEND_SMS_CALL_PRHONE, etcc  are an
                     // app-defined int constant. The callback method gets the
                     // result of the request.
 
                 }
             }
         }
+
     }
+
+
 
     //  ===========   Establecemos los listeners ===================================
     private void setListeners() {
@@ -298,11 +319,11 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
     @Override
     protected void onDestroy() {
-        Intent intent = new Intent(this, FallDetectService.class);
-        stopService(intent);
+        //Intent intent = new Intent(this, FallDetectService.class);
+        //stopService(intent);
         super.onDestroy();
-        unregisterReceiver(accelDataReceiver);
-        unregisterReceiver(fallDetectionReceiver);
+        //unregisterReceiver(accelDataReceiver);
+        //unregisterReceiver(fallDetectionReceiver);
     }
 
     public void displayActivity(int position) {
@@ -340,7 +361,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
     }
 
-
+/*
     private BroadcastReceiver fallDetectionReceiver = new BroadcastReceiver() {
 
         @Override
@@ -349,9 +370,12 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
             long currentTime = System.currentTimeMillis();
 
             sendSMS();
+            callEmergencyContact(contactNo);
 
         }
     };
+
+
 
     private BroadcastReceiver accelDataReceiver = new BroadcastReceiver() {
         @Override
@@ -373,10 +397,13 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
     };
 
 
+ */
+
     public void sendSMS() {
         ArrayList<String> location = getLocation();
         try {
-            System.out.println("Em contact: " + contactNo);
+            System.out.println("Emergency Em contact: " + contactNo);
+            verificarPermisos();
             SmsManager.getDefault().sendTextMessage(contactNo, null, "Alert:Patient has fallen, attention needed!" + "\n Location:http://maps.google.com/?q=" + location.get(0) + "," + location.get(1), null, null);
             Toast.makeText(getApplicationContext(), "Alert message sent to emergency contact", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
@@ -387,6 +414,82 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         }
 
     }
+
+
+    public void callEmergencyContact(String strnumber) {
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M){   //if our Api<23
+            callphone(strnumber);
+        } else { //Api >= 23
+            Log.i( "TAG", "API>=23");
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)==PackageManager.PERMISSION_GRANTED){
+                Log.i("TAG", "Permission Granted");
+                callphone(strnumber);
+            } else {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE)){  //TRUE
+                    Log.i("TAG", "The user previosuly rejected the request");
+                } else {
+                    Log.i("TAG", "Request Permission");
+                }
+                ActivityCompat.requestPermissions(PatientMainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_PERMISION_CALL);
+            }
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode== REQUEST_PERMISION_CALL){
+            if(permissions.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                Log.i("TAG" , "Permission granted (request)");
+                callphone(contactNo);
+            } else {
+                Log.i("TAG", "Permission Denied (request)");
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE)){ //TRUE
+                    new AlertDialog.Builder(this).setMessage("You need to enable permission to use this app")
+                            .setPositiveButton("Try Again" ,new DialogInterface.OnClickListener(){
+
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    ActivityCompat.requestPermissions(PatientMainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_PERMISION_CALL);
+
+                                }
+                            })
+                            .setNegativeButton("No Thanks", new DialogInterface.OnClickListener() {
+                                 @Override
+                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                //Leave
+                                Log.i("TAG", "Leave");
+
+                    }
+                }).show();
+
+            } else {
+                    Toast.makeText(this, "You need to able permission to call phone", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private void callphone(String strnumber) {
+        try {
+            System.out.println("Emergency Em contact: " + strnumber);
+            Intent i = new Intent(Intent.ACTION_CALL);
+            i.setData(Uri.parse("tel:"+ strnumber));
+            verificarPermisos();
+            startActivity(i);
+            //startActivity(new Intent(Intent.ACTION_CALL,  Uri.parse("tel: " + phone)));
+            Toast.makeText(getApplicationContext(), "Trying to contact the emergency contact", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            AlertDialog dialog = alertDialogBuilder.create();
+            dialog.setMessage(e.getMessage());
+            dialog.show();
+        }
+    }
+
 
     public ArrayList<String> getLocation() {
 
@@ -453,6 +556,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
     }
 
+    /*
     public class AsyncTaskCheckEmergency extends AsyncTask<Integer, String, ArrayList> {
 
         HttpResponse response;
@@ -477,17 +581,17 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
                 if (response.getStatusLine().getStatusCode() != 200) {
                     throw new RuntimeException("Failed: HTTP error code :" + response.getStatusLine().getStatusCode());
                 } else {
+                    System.out.println("We got an emergency contact");
                     HttpEntity e = response.getEntity();
                     String i = EntityUtils.toString(e);
                     System.out.println(i);
-                    JSONObject j = new JSONObject(i);
-                    if (j.length() == 0) {
-                        System.out.println("No emergency contact");
-                    } else {
-                        emergency.add(j.getString("Contact"));
-                        emergency.add(j.getString("Dependent_Id"));
+                    //JSONObject j = new JSONObject(i);
+                    //if (j.length() == 0) {
+                    //    System.out.println("No emergency contact");
+                    // } else {
+                    //    emergency.add(j.getString("Contact"));
+                    //    emergency.add(j.getString("Dependent_Id"));
                     }
-                }
             } catch (Exception x) {
                 throw new RuntimeException("Error from get emergency contact api", x);
             }
@@ -524,5 +628,8 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
                 //TODO goto ManageEmergencyContactActivity
             }
         }
+
     }
+
+     */
 }

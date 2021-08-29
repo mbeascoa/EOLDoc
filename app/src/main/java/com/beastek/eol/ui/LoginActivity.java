@@ -21,6 +21,7 @@ import com.beastek.eol.utility.encryptPasscode;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -55,6 +56,8 @@ public class LoginActivity extends Activity
     String enteruserpassword= "Enter user name and password";
     //String errusernamepasswordincorrect = res.getString(R.string.err_username_password_incorrect);
     String errusernamepasswordincorrect = "Username/Password is incorrect";
+
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
 
     @Override
@@ -366,12 +369,78 @@ public class LoginActivity extends Activity
         }
 
     }
+/*
+
+    //leer servicio
+    public void leerServicio(String taskname) {
+        try {
+
+            String Url= ConfigConstant.BASE_URL+ConfigConstant.authenticateDoctor;
+            String param = "/search?JSON_TITLE=*" + taskname + "*";
+            String url = urlbase + param;
+            //https://sheetdb.io/api/v1/ahhtehepl6e9f/search?JSON_TITLE=*primera*&limit=1
+            Log.i(TAG, "La url de acceso a los servicios web Restfull es : " + url);
+            mensajePersonalizado(url);
+            new HttpAsyncTask().execute(url);
+        } catch (Exception e) {
+            //manage exception
+            System.out.println(e.toString());
+            Log.i(TAG, "Error leyendo datos del servicio");
+            e.printStackTrace();
+        }
+    }
+    //obtains the user/password from the given url
+    public String recuperarContenido(String url) {
+        HttpClient httpclient = new DefaultHttpClient();
+        String resultado = null;
+        HttpGet httpget = new HttpGet(url);
+        HttpResponse respuesta = null;
+        InputStream stream = null;
+        try {
+            respuesta = httpclient.execute(httpget);
+            HttpEntity entity = respuesta.getEntity();
+
+
+            if (entity != null) {
+                stream = entity.getContent();
+                resultado = convertirInputToString(stream);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        } finally {
+            try {
+                if (stream != null) {
+                    stream.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+        return resultado;
+    }
+
+    //  Convert Input to String
+    private String convertirInputToString(InputStream inputStream) throws IOException {
+        BufferedReader buferredReader = new BufferedReader(new InputStreamReader(inputStream));
+        String line = "";
+        String resultado = "";
+        while ((line = buferredReader.readLine()) != null)
+            resultado += line;
+        inputStream.close();
+        return resultado;
+    }
+
+
+ */
+    //go to home page
     public void gotoHome(View V)
     {
         Intent intent = new Intent(LoginActivity.this,LauncherActivity.class);
         startActivity(intent);
     }
 
+    // finish login activity
     public void finishLoginActivity(View V)
     {
         LoginActivity.this.finish();;

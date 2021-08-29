@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -11,39 +12,58 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/title_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title_label">
-        <EditText
+        android:hint="@string/introduce_the_task_title"
+        app:boxBackgroundMode="outline"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxCornerRadiusTopEnd="@dimen/corner_radius_textinput"
+        app:boxCornerRadiusBottomEnd="@dimen/corner_radius_textinput"
+        app:boxCornerRadiusBottomStart="@dimen/corner_radius_textinput"
+        app:boxCornerRadiusTopStart="@dimen/corner_radius_textinput"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:inputType="textCapSentences"
+        app:helperText="@string/task_title"
+        app:endIconMode="clear_text"
+        app:counterMaxLength="100"
+        app:counterEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/title"
-            android:inputType="textCapSentences"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:hint="@string/placeholder_title"/>
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/description_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/description_label"
-        android:layout_below="@+id/title_label">
-        <EditText
+        android:layout_below="@+id/title_label"
+        android:layout_alignEnd="@+id/title_label"
+        android:layout_alignRight="@+id/title_label"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:inputType="textMultiLine|textCapSentences"
+        app:boxCornerRadiusBottomEnd="@dimen/corner_radius_textinput"
+        app:boxCornerRadiusBottomStart="@dimen/corner_radius_textinput"
+        app:boxCornerRadiusTopEnd="@dimen/corner_radius_textinput"
+        app:boxCornerRadiusTopStart="@dimen/corner_radius_textinput"
+        app:helperText="@string/introduce_task_description"
+        app:boxBackgroundMode="outline"
+        app:endIconMode="clear_text"
+        app:counterMaxLength="250"
+        app:counterEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine|textCapSentences"
-            android:id="@+id/description"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:hint="@string/placeholder_description"
-            android:layout_alignRight="@+id/title_label"
-            android:layout_alignEnd="@+id/title_label"
             android:minLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,7 +74,7 @@
         android:layout_below="@+id/description_label"
         android:layout_toStartOf="@+id/button_date"
         android:layout_toLeftOf="@+id/button_date">
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"
@@ -64,65 +84,59 @@
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:layout_below="@+id/description_label"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/button_date"
-            android:layout_toStartOf="@+id/button_date" />
+             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/button_date"
-        android:onClick="showDatePickerDialog"
-        android:text="@string/action_calendar"
-        android:src="@drawable/ic_calendar"
-        android:drawableLeft="@drawable/ic_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/description_label"
-        android:layout_toLeftOf="@+id/button_time"
+        android:layout_alignBottom="@+id/date_label"
         android:layout_toStartOf="@+id/button_time"
-        android:layout_alignBottom="@+id/date_label" />
+        android:layout_toLeftOf="@+id/button_time"
+        android:drawableLeft="@drawable/ic_calendar"
+        android:onClick="showDatePickerDialog"
+        android:src="@drawable/ic_calendar"
+        android:text="@string/action_calendar" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_time"
-        android:src="@drawable/ic_time"
         android:id="@+id/button_time"
-        android:onClick="showTimePickerDialog"
-        android:layout_below="@+id/description_label"
-        android:layout_toLeftOf="@+id/button_remove_date"
-        android:layout_toStartOf="@+id/button_remove_date"
-        android:layout_alignBottom="@+id/button_date"
-        android:layout_alignWithParentIfMissing="true" />
-
-    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button_remove_date"
-        android:src="@drawable/ic_close_black"
+        android:layout_alignWithParentIfMissing="true"
         android:layout_below="@+id/description_label"
-        android:layout_alignRight="@+id/description_label"
+        android:layout_alignBottom="@+id/button_date"
+        android:layout_toStartOf="@+id/button_remove_date"
+        android:layout_toLeftOf="@+id/button_remove_date"
+        android:onClick="showTimePickerDialog"
+        android:src="@drawable/ic_time"
+        android:text="@string/action_time" />
+
+    <ImageButton
+        android:id="@+id/button_remove_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description_label"
         android:layout_alignEnd="@+id/description_label"
-        android:layout_alignBottom="@+id/button_time"
-        android:onClick="removeDate"
+        android:layout_alignRight="@+id/description_label"
         android:nestedScrollingEnabled="false"
+        android:onClick="removeDate"
+        android:src="@drawable/ic_close_black"
         android:visibility="gone" />
 
     <Button
         android:id="@+id/setalarm"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Set Alarm"
-        android:clickable="true"
-        android:background="@drawable/layout_bg"
-        android:textColor="#fff"
-        android:onClick="setAlarm"
         android:layout_below="@+id/date_label"
         android:layout_marginTop="34dp"
-         />
+        android:background="@drawable/layout_bg"
+        android:clickable="true"
+        android:onClick="setAlarm"
+        android:text="Set Alarm"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#fff" />
 
 
 </RelativeLayout>

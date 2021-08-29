@@ -19,8 +19,11 @@ public class FitbitTokenResponse extends AppCompatActivity {
     String LOG_TAG=FitbitTokenResponse.class.getSimpleName();
 
     @Override
-    protected void onNewIntent(Intent intent){
-        respStrUrl=intent.getDataString();
+    protected void onNewIntent(Intent intent) {
+        respStrUrl = intent.getDataString();
+        // this line was suggested by the editor
+        super.onNewIntent(intent);
+
     }
 
     @Override
@@ -42,10 +45,16 @@ public class FitbitTokenResponse extends AppCompatActivity {
 
         /*SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(this);
         sp.edit().putBoolean(FitbitReferences.HAS_ACCESS_TOKEN,true).commit();
-        sp.edit().putString(FitbitReferences.FITBIT_TOKEN,token).commit();
         sp.edit().putString(FitbitReferences.FITBIT_UID,user_id).commit();
+        sp.edit().putString(FitbitReferences.FITBIT_TOKEN,token).commit();
         sp.edit().putString(FitbitReferences.FITBIT_TOKEN_TYPE,token_type).commit();
-        sp.edit().putString(FitbitReferences.FITBIT_FULL_AUTH,token_type+" "+token).commit();*/
+        sp.edit().putString(FitbitReferences.FITBIT_FULL_AUTH,token_type+" "+token).commit();
+
+        editor.putBoolean(HAS_ACCESS_TOKEN,f1);
+        editor.putString(FITBIT_UID, f2);
+        editor.putString(FITBIT_TOKEN,f3);
+        editor.putString(FITBIT_TOKEN_TYPE,f4);
+        editor.putString(FITBIT_FULL_AUTH,f5);*/
 
         Intent intent=new Intent(FitbitTokenResponse.this,FitbitActivity.class);
         startActivity(intent);

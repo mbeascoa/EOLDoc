@@ -5,15 +5,15 @@
     android:background="@color/white">
 
     <EditText
+        android:id="@+id/home"
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:background="@color/white"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/home"
-        android:textColor="@color/colorPrimary"
         android:layout_alignTop="@+id/textView10"
-        android:layout_alignEnd="@+id/textView15" />
+        android:layout_alignEnd="@+id/textView15"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:textColor="@color/colorPrimary" />
 
     <TextView
         android:text="Welcome "
@@ -41,15 +41,15 @@
         android:textColor="@color/colorPrimary" />
 
     <TextView
-        android:text="Mr.lastname"
-        android:textSize="25dp"
         android:id="@+id/lname_patient"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:textAlignment="center"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView12"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorPrimary" />
+        android:text="Mr.lastname"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp" />
 
     <ImageView
         android:layout_height="75dp"
@@ -131,67 +131,67 @@
         android:layout_marginTop="46dp"
         android:background="@color/colorPrimary"
         android:onClick="finishPatientRegistration"
-        android:text="Back"
+        android:text="@string/back"
         android:textColor="@color/white"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
     <Button
-        android:text="Sign In"
-        android:layout_width="100dp"
-        android:textSize="15dp"
         android:id="@+id/button5"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/password_patient"
+        android:layout_alignTop="@+id/button6"
+        android:layout_alignBottom="@+id/button6"
+        android:layout_marginStart="21dp"
         android:background="@color/colorPrimary"
         android:onClick="LoginPatientRegistration"
-        android:layout_marginStart="21dp"
-        android:layout_height="40dp"
+        android:text="@string/sign_in"
         android:textColor="@color/white"
-        android:layout_alignBottom="@+id/button6"
-        android:layout_alignStart="@+id/password_patient"
-        android:layout_alignTop="@+id/button6" />
+        android:textSize="15sp" />
 
     <EditText
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:inputType="textPassword"
-        android:background="@color/white"
-        android:ems="10"
         android:id="@+id/password_patient"
-        android:textColor="@color/colorPrimary"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_alignStart="@+id/uname_patient"
         android:layout_alignTop="@+id/textView19"
-        android:layout_alignStart="@+id/uname_patient" />
-
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:inputType="number"
         android:background="@color/white"
         android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="@color/colorPrimary" />
+
+    <EditText
         android:id="@+id/age"
-        android:textColor="@color/colorPrimary"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
         android:layout_alignTop="@+id/textView16"
-        android:layout_alignEnd="@+id/textView15" />
+        android:layout_alignEnd="@+id/textView15"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="@color/colorPrimary" />
 
     <EditText
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:background="@color/white"
-        android:inputType="textMultiLine"
-        android:ems="10"
         android:id="@+id/weight"
-        android:textColor="@color/colorPrimary"
-        android:layout_alignBaseline="@+id/textView17"
-        android:layout_alignBottom="@+id/textView17"
-        android:layout_alignStart="@+id/age" />
-
-    <EditText
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:inputType="textPersonName"
+        android:layout_alignBaseline="@+id/textView17"
+        android:layout_alignStart="@+id/age"
+        android:layout_alignBottom="@+id/textView17"
         android:background="@color/white"
         android:ems="10"
+        android:inputType="number"
+        android:textColor="@color/colorPrimary" />
+
+    <EditText
         android:id="@+id/uname_patient"
-        android:textColor="@color/colorPrimary"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_alignStart="@+id/home"
         android:layout_alignTop="@+id/textView18"
-        android:layout_alignStart="@+id/home" />
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimary" />
 
 </RelativeLayout>

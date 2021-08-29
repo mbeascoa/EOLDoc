@@ -23,6 +23,8 @@ public class PatientActivity extends AppCompatActivity implements PatientFragmen
         ActionBar actionBar=getSupportActionBar();
         if(actionBar!=null) {
             actionBar.setTitle(getResources().getString(R.string.doctor_patients_title));
+            // actionBar.setLogo(R.drawable.ic_launcher);
+            // enables the logo in ActionBar, and enables the home arrow
             actionBar.setDisplayUseLogoEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }

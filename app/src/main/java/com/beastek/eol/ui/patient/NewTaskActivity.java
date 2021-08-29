@@ -26,6 +26,8 @@ import com.beastek.eol.R;
 import com.beastek.eol.data.TaskDBHelper;
 import com.beastek.eol.model.Task;
 import com.beastek.eol.util.DateUtil;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -38,7 +40,10 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
     private Calendar calendar;
     private Validator validator;
     @NotEmpty(messageResId = R.string.field_empty)
-    private EditText titleTask;
+    //private EditText titleTask;
+    private TextInputLayout titleTaskInputLayout, descriptionTaskInputLayout, dateTaskInputLayout;
+    private TextInputEditText titleTask, descriptionTask, dateView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,17 +52,25 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        titleTask = (EditText) findViewById(R.id.title);
+        titleTaskInputLayout = (TextInputLayout) findViewById(R.id.title_label);
+        //titleTask = (EditText) findViewById(R.id.title);
+        titleTask = (TextInputEditText) findViewById(R.id.title);
+        descriptionTaskInputLayout= (TextInputLayout)findViewById(R.id.description_label);
+        descriptionTask= (TextInputEditText) findViewById(R.id.description);
+        dateTaskInputLayout= (TextInputLayout)findViewById(R.id.date_label);
+        dateView= (TextInputEditText) findViewById(R.id.date);
         validator = new Validator(this);
         validator.setValidationListener(this);
     }
 
+    // menu _ new_ task .xml  options ; save and cancel
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_new_task, menu);
         return true;
     }
 
+    // menu _ new_ task .xml  options ; save and cancel
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -72,6 +85,7 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
         return super.onOptionsItemSelected(item);
     }
 
+    // when button DatePicker is pressed
     public void showDatePickerDialog(View v) {
         Calendar calendarTemp;
         if(calendar == null) {
@@ -81,7 +95,7 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
         }
         DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker arg0, int year, int month, int day) {
+            public void onDateSet(DatePicker datepic, int year, int month, int day) {
                 if(calendar == null){
                     calendar = Calendar.getInstance();
                 }
@@ -89,6 +103,7 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
                 calendar.set(Calendar.MONTH, month);
                 calendar.set(Calendar.DAY_OF_MONTH, day);
                 updateTime();
+                //we allow the remove date buttom to appear so you can clear the date when you are editing
                 ImageButton button = (ImageButton) findViewById(R.id.button_remove_date);
                 button.setVisibility(View.VISIBLE);
             }
@@ -97,17 +112,21 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
         datePickerDialog.show();
     }
 
+    // when imagebutton remove date pressed then remove date, is hidden if not date or time selected
     public void removeDate(View v) {
         ImageButton button = (ImageButton) findViewById(R.id.button_remove_date);
         button.setVisibility(View.GONE);
         calendar = null;
         updateTime();
     }
+
+    //when SetAlarm Button is pressed.....goes to AlarmActivity.class
     public void setAlarm(View v){
         Intent intent=new Intent(NewTaskActivity.this,AlarmActivity.class);
         startActivity(intent);
     }
 
+    // when image button is pressed TimePickerDialog
     public void showTimePickerDialog(View v) {
         Calendar calendarTemp;
         if(calendar == null) {
@@ -133,19 +152,23 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
     }
 
     public void updateTime(){
-        TextView textView = (TextView) findViewById(R.id.date);
+
         if(calendar != null){
-            textView.setText(new DateUtil(this).parse(calendar.getTime()));
+            dateView.setText(new DateUtil(this).parse(calendar.getTime()));
         }else{
-            textView.setText("");
+            dateView.setText("");
         }
     }
 
+    // once fields are validated...
     @Override
     public void onValidationSucceeded() {
-        TextView title = (TextView) findViewById(R.id.title);
-        TextView description = (TextView) findViewById(R.id.description);
-        Task task = new Task(title.getText().toString(),description.getText().toString(),null,false);
+        titleTaskInputLayout = (TextInputLayout) findViewById(R.id.title_label);
+        titleTask = (TextInputEditText) findViewById(R.id.title);
+        descriptionTaskInputLayout= (TextInputLayout)findViewById(R.id.description_label);
+        descriptionTask= (TextInputEditText) findViewById(R.id.description);
+
+        Task task = new Task(titleTask.getText().toString(),descriptionTask.getText().toString(),null,false);
         if( calendar != null ){
             task.setDate(calendar.getTime());
         }
@@ -154,6 +177,7 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
         this.finish();
     }
 
+    // once fields are NOT validated...check if it works on TextInputEditText also, was originally tested for EditText
     @Override
     public void onValidationFailed(List<ValidationError> errors) {
         for (ValidationError error : errors) {
@@ -161,14 +185,15 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
             String message = error.getCollatedErrorMessage(this);
 
             // Display error messages ;)
-            if (view instanceof EditText) {
-                ((EditText) view).setError(message);
+            if (view instanceof TextInputEditText) {
+                ((TextInputEditText) view).setError(message);
             } else {
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
         }
     }
 
+    //saves task in sqlite using TaskDBHelper
     private class SaveTask extends AsyncTask<Task, Void, Boolean> {
 
         private Context context;

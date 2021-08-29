@@ -63,6 +63,7 @@ public class PatientFragment extends Fragment implements SwipeRefreshLayout.OnRe
         recyclerViewPatient=(RecyclerView) root_view.findViewById(R.id.patient_list_view);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
         RecyclerView.LayoutManager layoutManager=linearLayoutManager;
 
         recyclerViewPatient.setLayoutManager(layoutManager);

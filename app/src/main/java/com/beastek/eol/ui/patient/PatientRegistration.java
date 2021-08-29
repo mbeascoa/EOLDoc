@@ -25,9 +25,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
+import java.util.UUID;
+
 
 public class PatientRegistration extends Activity
 {
+    int uniquePatientId = 0;
     AlertDialogManager alert = new AlertDialogManager();
 
     @Override
@@ -117,6 +120,10 @@ public class PatientRegistration extends Activity
                 requestBody_credential.put("username", params[0].Username);
                 String password = encryptPasscode.encryptPassword(params[0].Password);
                 requestBody_credential.put("password",password);
+                int patId= getUniquePatient();
+                String pId = patId+"";
+                requestBody_credential.put("PatientId", pId);
+                // INCREMENTS INCREASE 1 BY THE BIGGEST NUMBER IN PATIENTID
                 String request_credentials = requestBody_credential.toString();
                 StringEntity request_param = new StringEntity(request_credentials);
 
@@ -128,8 +135,9 @@ public class PatientRegistration extends Activity
                 response = httpClient.execute(post);
                 System.out.println("Reached after coming back from credentials API");
 
-                if (response.getStatusLine().getStatusCode() != 200)
+                if (response.getStatusLine().getStatusCode() != 201)
                 {
+
                     if(response.getStatusLine().getStatusCode() == 500)
                     {
                         System.out.println("Patient registration failed!");
@@ -139,13 +147,18 @@ public class PatientRegistration extends Activity
                 }
                 else
                 {
+                    System.out.println("Patient registration in process, ok!");
                     HttpEntity e = response.getEntity();
                     String i = EntityUtils.toString(e);
                     System.out.println(i);
+
+                    /*
                     JSONObject j = new JSONObject(i);
                     //int userID = Integer.parseInt(i);
                     int userID = j.getInt("PatientId");
                     params[0].setID(userID);
+                     */
+                    params[0].setID(patId);
                 }
             }
             catch (Exception x)
@@ -154,6 +167,7 @@ public class PatientRegistration extends Activity
             }
 
             try {
+
 
                 JSONObject requestBody = new JSONObject();
                 requestBody.put("firstname", params[0].fname);
@@ -176,7 +190,7 @@ public class PatientRegistration extends Activity
                 HttpClient httpClient = new DefaultHttpClient();
                 response = httpClient.execute(post);
                 System.out.println("Reached after coming back from patient API");
-                if (response.getStatusLine().getStatusCode() != 200)
+                if (response.getStatusLine().getStatusCode() != 201)
                 {
                     if(response.getStatusLine().getStatusCode() == 500)
                     {
@@ -191,10 +205,12 @@ public class PatientRegistration extends Activity
                 }
                 else
                 {
-                    HttpEntity e = response.getEntity();
-                    String i = EntityUtils.toString(e);
-                    JSONObject j = new JSONObject(i);
-                    msg = j.getString("string");
+                    System.out.println("Patient registration ok!");
+                   // HttpEntity e = response.getEntity();
+                    //String i = EntityUtils.toString(e);
+                   // JSONObject j = new JSONObject(i);
+                   // msg = j.getString("string");   // gets the response message
+                    msg="Request Succeeded!";
                 }
 
             }
@@ -207,6 +223,7 @@ public class PatientRegistration extends Activity
             return params[0];
         }
 
+        // Once registered with success ! goes to LauncherActivity.class
         @Override
         protected void onPostExecute(PatientInfo P)
         {
@@ -229,6 +246,11 @@ public class PatientRegistration extends Activity
         }
     }
 
+    private int getUniquePatient() {
+            return uniquePatientId++;
+    }
+
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -244,6 +266,8 @@ public class PatientRegistration extends Activity
         super.onStop();
     }
 
+
+    // 10 When back button pressed
     public void finishPatientRegistration(View V)
     {
         PatientRegistration.this.finish();;

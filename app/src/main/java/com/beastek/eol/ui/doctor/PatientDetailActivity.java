@@ -100,7 +100,7 @@ public class PatientDetailActivity extends AppCompatActivity implements View.OnC
         int id=view.getId();
         if(id==R.id.btn_request_health_data){
 
-            openHealDataRequestDialog();
+            openHealthDataRequestDialog();
 
         }else if(id==R.id.btn_view_health_data){
 
@@ -125,7 +125,7 @@ public class PatientDetailActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    public void openHealDataRequestDialog(){
+    public void openHealthDataRequestDialog(){
 
         AlertDialog.Builder dialogBuilder=new AlertDialog.Builder(this);
         LayoutInflater layoutInflater=this.getLayoutInflater();
@@ -410,8 +410,6 @@ public class PatientDetailActivity extends AppCompatActivity implements View.OnC
                             })
                             .show();
                 }
-
-
             }
 
 
@@ -536,19 +534,21 @@ public class PatientDetailActivity extends AppCompatActivity implements View.OnC
 
         @Override
         protected void onPostExecute(HashMap<String,String> result){
+            //if there is a possitive result then we play with the status in order to hide buttons
             if(result!=null){
 
                 reqDataMsg=result.get("Description");
                 String status=result.get("status");
+
+                // if requested we should hide the View HeatlhData Button,
+                //if Accepted or Declined we hide the RequestHealthData Button
                 if(status.equals("Requested")){
                     btnRequestHealthData.setVisibility(View.VISIBLE);
                     btnViewHealthData.setVisibility(View.GONE);
                 }else if(status.equals("Accepted")||status.equals("Declined")){
                     btnRequestHealthData.setVisibility(View.GONE);
                     btnViewHealthData.setVisibility(View.VISIBLE);
-
                 }
-
 
             }
         }

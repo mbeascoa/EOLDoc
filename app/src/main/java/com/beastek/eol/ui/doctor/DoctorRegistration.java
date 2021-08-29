@@ -1,6 +1,6 @@
 package com.beastek.eol.ui.doctor;
 
-import android.app.Activity;
+//import android.app.Activity; we change Activiy por AppCompatActivity
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.beastek.eol.R;
 import com.beastek.eol.data.DoctorInfo;
@@ -28,8 +30,9 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 
-public class DoctorRegistration extends Activity
-{
+public class DoctorRegistration extends AppCompatActivity {
+
+    private int uniqueDoctorId = 0;
 
 
     AlertDialogManager alert = new AlertDialogManager();
@@ -39,8 +42,9 @@ public class DoctorRegistration extends Activity
     {
         Bundle bundle = getIntent().getExtras();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.doctoe_registration);
+        setContentView(R.layout.doctor_registration);
         Spinner dropdown = (Spinner)findViewById(R.id.dropDown);
+        //TODO put values in Database MYSQL and get those values
         String[] items = new String[]{"GeneralPhysician","Cardiology", "Neurology","Oncology","AllergyImmunology", "CriticalCare","Psychiatry", "Urology"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_custom, items);
         dropdown.setAdapter(adapter);
@@ -72,14 +76,14 @@ public class DoctorRegistration extends Activity
 
         EditText li =(EditText)findViewById(R.id.license);
         EditText cli = (EditText)findViewById(R.id.clinic);
-        //EditText spl = (EditText)findViewById(R.id.speciality);
         EditText un =(EditText)findViewById(R.id.uname_doc);
         EditText pass = (EditText)findViewById(R.id.password_patient);
-        Spinner spl = (Spinner)findViewById(R.id.dropDown);
+        Spinner spinspeciality = (Spinner)findViewById(R.id.dropDown);
 
 
         String license= li.getText().toString();
-        String speciality= spl.getSelectedItem().toString();
+        //we obtain the text from the selected item in the spinner,
+        String speciality= spinspeciality.getSelectedItem().toString();
         String clinic_add= cli.getText().toString();
         String uname= un.getText().toString();
         String password= pass.getText().toString();
@@ -124,6 +128,9 @@ public class DoctorRegistration extends Activity
                 requestBody.put("username", params[0].Username);
                 String password = encryptPasscode.encryptPassword(params[0].Password);
                 requestBody.put("password",password);
+                int docId= getUniqueDoctor();
+                String dId = docId+"";
+                requestBody.put("PatientId", dId);
                 String request = requestBody.toString();
                 System.out.println(requestBody);
                 System.out.println(request);
@@ -136,7 +143,7 @@ public class DoctorRegistration extends Activity
                 HttpClient httpClient = new DefaultHttpClient();
                 response = httpClient.execute(post);
                 System.out.println("Reached after coming back from Backend API");
-                if (response.getStatusLine().getStatusCode() != 200)
+                if (response.getStatusLine().getStatusCode() != 201)
                 {
                     if(response.getStatusLine().getStatusCode() == 500)
                     {
@@ -147,12 +154,17 @@ public class DoctorRegistration extends Activity
                 }
                 else
                 {
+                    /*
+                    getEntity() of org.apache.http.HttpResponse Obtains the message entity of this response, if any.
+                    The entity is provided by calling #setEntity.
+                     */
                     HttpEntity e = response.getEntity();
                     String i = EntityUtils.toString(e);
                     System.out.println(i);
-                    JSONObject j = new JSONObject(i);
-                    int userID = j.getInt("integer");
+                    //JSONObject j = new JSONObject(i);
+                    //int userID = j.getInt("integer");
                    //int userID = Integer.parseInt(i);
+                    int userID= docId;
                     params[0].setID(userID);
                 }
             }
@@ -161,6 +173,7 @@ public class DoctorRegistration extends Activity
                 throw new RuntimeException("Error from insert credential api",x);
             }
 
+                // inserting doctor information gathered from the registration
             try {
 
                 JSONObject requestBody = new JSONObject();
@@ -184,7 +197,7 @@ public class DoctorRegistration extends Activity
                 HttpClient httpClient = new DefaultHttpClient();
                 response = httpClient.execute(post);
                 System.out.println("Reached after coming back from Backend API");
-                if (response.getStatusLine().getStatusCode() != 200)
+                if (response.getStatusLine().getStatusCode() != 201)
                 {
                     if(response.getStatusLine().getStatusCode() == 500)
                     {
@@ -199,11 +212,13 @@ public class DoctorRegistration extends Activity
                 }
                 else
                 {
+                    System.out.println("Reached after coming back from Backend API obtaning response code 201");
                     HttpEntity e = response.getEntity();
-                    String str = EntityUtils.toString(e);
-                    JSONObject j = new JSONObject(str);
-                    msg = j.getString("string");
-                    System.out.println("msg from doc info api: " +msg);
+                    //String str = EntityUtils.toString(e);
+                    //JSONObject j = new JSONObject(str);
+                    //msg = j.getString("string");
+                    //System.out.println("msg from doc info api: " +msg);
+                    msg = "Request Succeeded!";
                 }
             }
             catch (Exception x)
@@ -237,6 +252,11 @@ public class DoctorRegistration extends Activity
                 alert.showAlertDialog(DoctorRegistration.this, "Doctor resgistration failed..", "Re-Register", false);
             }
         }
+    }
+
+    // creates a Unique Doctor Identifier
+    private int getUniqueDoctor() {
+        return uniqueDoctorId++;
     }
 
 

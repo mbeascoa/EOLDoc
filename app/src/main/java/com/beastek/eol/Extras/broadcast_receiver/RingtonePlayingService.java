@@ -72,7 +72,7 @@ public class RingtonePlayingService extends Service {
         }
 
         if (!this.isRunning && startId == 1) {
-            Log.e("there is no music, ", "and you want start");
+            Log.i("there is no music, ", "and you want start");
 
             this.isRunning = true;
             this.startId = 0;
@@ -86,7 +86,7 @@ public class RingtonePlayingService extends Service {
 
                 Random random_number = new Random();
                 int alarm_number = random_number.nextInt(maximum_number + minimum_number);
-                Log.e("random number is " , String.valueOf(alarm_number));
+                Log.i("random number is " , String.valueOf(alarm_number));
 
 
                 if (alarm_number == 1) {

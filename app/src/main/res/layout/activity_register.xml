@@ -82,47 +82,47 @@
         android:background="#7BCC70" />
 
     <EditText
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:inputType="number"
-        android:background="#ffff"
-        android:ems="10"
         android:id="@+id/editText"
-        android:hint="A-1124324"
+        android:layout_width="170dp"
+        android:layout_height="30dp"
         android:layout_alignTop="@+id/textView16"
+        android:layout_marginStart="14dp"
         android:layout_toEndOf="@+id/textView16"
-        android:layout_marginStart="14dp" />
-
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:inputType="textPersonName"
         android:background="#ffff"
         android:ems="10"
+        android:hint="A-1124324"
+        android:inputType="number" />
+
+    <EditText
         android:id="@+id/editText3"
-        android:hint="Cardiology/Oncology..."
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:layout_alignStart="@+id/editText"
         android:layout_alignTop="@+id/textView17"
-        android:layout_alignStart="@+id/editText" />
-
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:inputType="textPersonName"
         android:background="#ffff"
         android:ems="10"
+        android:hint="Cardiology/Oncology..."
+        android:inputType="textPersonName" />
+
+    <EditText
         android:id="@+id/editText10"
-        android:layout_alignTop="@+id/textView18"
-        android:layout_alignStart="@+id/editText3" />
-
-    <EditText
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="30dp"
-        android:inputType="textPassword"
+        android:layout_alignStart="@+id/editText3"
+        android:layout_alignTop="@+id/textView18"
         android:background="#ffff"
         android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
         android:id="@+id/editText11"
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:layout_alignStart="@+id/editText10"
         android:layout_alignTop="@+id/textView19"
-        android:layout_alignStart="@+id/editText10" />
+        android:background="#ffff"
+        android:ems="10"
+        android:inputType="textPassword" />
 
     <ImageView
         android:layout_width="75dp"
@@ -134,14 +134,14 @@
         android:layout_marginStart="13dp" />
 
     <EditText
-        android:layout_width="150dp"
+        android:id="@+id/editText9"
+        android:layout_width="170dp"
         android:layout_height="30dp"
-        android:background="#ffff"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:layout_alignBottom="@+id/textView10"
         android:layout_alignStart="@+id/editText3"
-        android:id="@+id/editText9" />
+        android:layout_alignBottom="@+id/textView10"
+        android:background="#ffff"
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
     <TextView
         android:text="Clinic Address"
