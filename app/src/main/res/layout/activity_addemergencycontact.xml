@@ -179,17 +179,18 @@
         android:layout_height="wrap_content"
         android:paddingTop="20dp"
         android:paddingBottom="5dp">
+
         <Button
             android:id="@+id/addECBtn"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:background="@color/white"
-            android:textColor="@color/colorPrimary"
+            android:onClick="addEmergencyContact"
             android:text="@string/btn_add_label"
-            android:textSize="18sp"
             android:textAllCaps="false"
-            android:onClick="addEmergencyContact"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

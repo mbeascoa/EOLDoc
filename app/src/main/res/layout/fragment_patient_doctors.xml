@@ -26,10 +26,13 @@
         android:id="@+id/addDoctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="?attr/colorAccent"
-        android:src="@drawable/ic_add_white" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:src="@drawable/ic_add_white"
+        app:backgroundTint="?attr/colorAccent" />
 
 </RelativeLayout>

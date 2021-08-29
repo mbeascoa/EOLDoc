@@ -23,21 +23,22 @@
         android:layout_height="wrap_content"
         android:paddingTop ="40dp"
         android:paddingBottom="5sp">
+
         <EditText
             android:id="@+id/firstnameEditText"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:layout_weight="60"
-            android:background="@color/white"
-            android:textSize="15dp"
-            android:textColor="@color/colorPrimary"
             android:layout_alignBaseline="@+id/firstname"
             android:layout_alignBottom="@+id/firstname"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="39dp"
+            android:layout_alignParentRight="true"
             android:layout_marginEnd="39dp"
-            android:textAlignment="textStart" />
+            android:layout_marginRight="39dp"
+            android:layout_weight="60"
+            android:background="@color/white"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/firstname"
@@ -66,15 +67,15 @@
             android:id="@+id/lastnameEditText"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:background="@color/white"
-            android:textSize="15dp"
-            android:textColor="@color/colorPrimary"
-            android:layout_marginRight="40dp"
-            android:layout_marginEnd="40dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:textAlignment="textStart" />
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@color/white"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/lastname"
@@ -121,15 +122,15 @@
             android:id="@+id/emailIdEditText"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:background="@color/white"
-            android:textSize="15dp"
-            android:textColor="@color/colorPrimary"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/emailId"
-            android:layout_toEndOf="@+id/emailId"
-            android:layout_marginLeft="35dp"
             android:layout_marginStart="35dp"
-            android:textAlignment="textStart" />
+            android:layout_marginLeft="35dp"
+            android:layout_toEndOf="@+id/emailId"
+            android:layout_toRightOf="@+id/emailId"
+            android:background="@color/white"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -142,15 +143,15 @@
             android:id="@+id/contactEditText"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:background="@color/white"
-            android:textSize="15dp"
-            android:textColor="@color/colorPrimary"
-            android:layout_marginRight="41dp"
-            android:layout_marginEnd="41dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:textAlignment="textStart" />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="41dp"
+            android:layout_marginRight="41dp"
+            android:background="@color/white"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/contact"
@@ -181,14 +182,14 @@
             android:id="@+id/addressEditText"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:background="@color/white"
-            android:textSize="15dp"
-            android:textColor="@color/colorPrimary"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="42dp"
             android:layout_marginRight="42dp"
-            android:layout_marginEnd="42dp" />
+            android:background="@color/white"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/address"
@@ -218,14 +219,14 @@
             android:id="@+id/relationEditText"
             android:layout_width="180dp"
             android:layout_height="30dp"
-            android:background="@color/white"
-            android:textSize="15dp"
-            android:textColor="@color/colorPrimary"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="41dp"
             android:layout_marginRight="41dp"
-            android:layout_marginEnd="41dp" />
+            android:background="@color/white"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/relation"
