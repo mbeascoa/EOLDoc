@@ -41,6 +41,7 @@ import com.beastek.eol.R;
 import com.beastek.eol.adapter.NavigationListAdapter;
 import com.beastek.eol.data.NavDrawerItem;
 import com.beastek.eol.ui.SessionManager;
+import com.beastek.eol.ui.doctor.DoctorDashboardFragment;
 import com.beastek.eol.utility.ConfigConstant;
 import com.google.android.gms.common.api.GoogleApi;
 
@@ -118,6 +119,8 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         String strDateTime[] = sdf.format(calendar.getTime()).split(" ");
         currentDate = strDateTime[0];
 
+
+
         /*  we take that part out until fitbit API works, eliminado para practica
 
         if (savedInstanceState == null) {
@@ -131,8 +134,6 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.patient_content_frame, fragment).commit();
         }
-
-
          */
         verificarPermisos();
 
@@ -352,6 +353,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
                 break;
             case 6:   //sources
                 Intent intent = new Intent(PatientMainActivity.this, PatientSourceActivity.class);
+                //sendSMS();
                 startActivity(intent);
                 break;
             case 7:
@@ -404,7 +406,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         try {
             System.out.println("Emergency Em contact: " + contactNo);
             verificarPermisos();
-            SmsManager.getDefault().sendTextMessage(contactNo, null, "Alert:Patient has fallen, attention needed!" + "\n Location:http://maps.google.com/?q=" + location.get(0) + "," + location.get(1), null, null);
+            SmsManager.getDefault().sendTextMessage(contactNo, null, "Alert:Patient has an appointment, attention needed!" + "\n Location:http://maps.google.com/?q=" + location.get(0) + "," + location.get(1), null, null);
             Toast.makeText(getApplicationContext(), "Alert message sent to emergency contact", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

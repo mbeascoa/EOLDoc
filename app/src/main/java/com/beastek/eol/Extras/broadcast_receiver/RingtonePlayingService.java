@@ -1,6 +1,7 @@
 package com.beastek.eol.Extras.broadcast_receiver;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -12,12 +13,14 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
 import com.beastek.eol.R;
 import com.beastek.eol.ui.patient.AlarmActivity;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -151,6 +154,7 @@ public class RingtonePlayingService extends Service {
             nm.notify(idNotify, builder.build());
 
 
+
             if (alarm_sound_choice == 0) {
 
                 int minimum_number = 1;
@@ -212,6 +216,8 @@ public class RingtonePlayingService extends Service {
 
         return START_NOT_STICKY;
     }
+
+
 
 
     @Override

@@ -52,7 +52,7 @@
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/fragment_new_task.xml" value="0.2225201072386059" />
         <entry key="app/src/main/res/layout/fragment_patient_appointment.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_patient_dashboard.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_patient_dashboard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_patient_doctors.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_patient_health_requests.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/fragment_view_task.xml" value="0.128125" />
