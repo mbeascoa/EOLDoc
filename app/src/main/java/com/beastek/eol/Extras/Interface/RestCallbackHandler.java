@@ -1,8 +1,8 @@
 package com.beastek.eol.Extras.Interface;
 
-import com.beastek.eol.ui.patient.MocRestClient;
+import com.beastek.eol.ui.patient.EolRestClient;
 
 
 public interface RestCallbackHandler {
-    public void handleResponse(MocRestClient client);
+    public void handleResponse(EolRestClient client);
 }

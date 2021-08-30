@@ -34,6 +34,8 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import java.util.Calendar;
 import java.util.List;
 
+// Using SQLLite for keeping tasks.
+
 public class NewTaskActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     private Calendar calendar;

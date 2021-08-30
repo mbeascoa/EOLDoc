@@ -4,7 +4,7 @@ package com.beastek.eol.model;
 import com.beastek.eol.utility.ConfigConstant;
 
 public class EmergencyContact {
-    private int dependent_id;
+    private String dependent_id;
     private String firstname;
     private String lastname;
     private String emailId;
@@ -12,7 +12,7 @@ public class EmergencyContact {
     private String address;
     private String relation;
 
-    public EmergencyContact(int dependent_idIn, String firstnameIn, String lastnameIn, String emailIdIn, String contactIn, String addressIn, String relationIn) {
+    public EmergencyContact(String dependent_idIn, String firstnameIn, String lastnameIn, String emailIdIn, String contactIn, String addressIn, String relationIn) {
         dependent_id = dependent_idIn;
         firstname = firstnameIn;
         lastname = lastnameIn;
@@ -42,7 +42,7 @@ public class EmergencyContact {
         return newEmergencyContact;
     }
 
-    public int getId() { return dependent_id; }
+    public String getId() { return dependent_id; }
     public String getFirstname() { return firstname; }
     public String getLastname() { return lastname; }
     public String getEmailId() { return emailId; }

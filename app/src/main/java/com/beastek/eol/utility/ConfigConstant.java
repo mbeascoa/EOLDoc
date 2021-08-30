@@ -7,7 +7,7 @@ public class ConfigConstant {
     public static final String FITBIT_BASE_URL="http://52.206.7.24:8060";
     public static final String FITBIT_SUMMARY_ENDPOINT="health/activity/summary";
     public static final String DOC_APPOINTMENT_LIST_ENDPOINT="doctor/appointments";
-    public static final String PAT_APPOINTMENT_LIST_ENDPOINT="patient/appointment";
+    public static final String PAT_APPOINTMENT_LIST_ENDPOINT="search?sheet=addappointment&P_ID=";  // patient appointments list recycler view
     public static final String DOC_PATIENT_LIST_ENDPOINT="doctor/patients";
     public static final String APPOINTMENT_STATUS_UPDATE="doctor/appointmentStatus/update";
 
@@ -47,7 +47,7 @@ public class ConfigConstant {
     public static final String MYSQL_SERVER_PASSWORD = "lnpTur01";
 
 
-    public static final int INVALID_ID = -1;
+    public static final String INVALID_ID = "-1";
 
 
 }

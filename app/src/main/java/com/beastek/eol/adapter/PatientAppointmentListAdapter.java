@@ -55,8 +55,10 @@ public class PatientAppointmentListAdapter extends RecyclerView.Adapter<PatientA
             holder.status.setText(appObj.getAppointment_status());
             holder.status.setTextColor(ContextCompat.getColor(context,R.color.redColor));
         }
-        String date=convertDate(appObj.getAppointment_date_time());
+        //String date=convertDate(appObj.getAppointment_date_time());
+        String date=appObj.getAppointment_date_time();
         holder.appDate.setText(date);
+        //holder.appDate.setText("me cago en to");
         holder.appDesc.setText(appObj.getAppointment_desc());
 
     }

@@ -197,18 +197,19 @@
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
         android:paddingBottom="5dp">
+
         <Button
             android:id="@+id/backECBtn"
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:background="@color/white"
-            android:textColor="@color/colorPrimary"
+            android:onClick="backFromAddEC"
             android:text="BACK"
-            android:textSize="18sp"
             android:textAllCaps="false"
-            android:onClick="backFromAddEC"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
     </RelativeLayout>
 </LinearLayout>
 

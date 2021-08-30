@@ -2,6 +2,7 @@ package com.beastek.eol.ui.patient;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,11 +17,13 @@ import com.beastek.eol.utility.ConfigConstant;
 
 import org.json.JSONObject;
 
+import java.net.URL;
+
 
 public class ManageEmergencyContactActivity extends Activity implements RestCallbackHandler {
     String mPatientId;
 
-    final String baseURL = "http://192.168.56.1:8080/MoC_Medicare_Backend/";
+    final String baseURL = ConfigConstant.BASE_URL;
     final String getECRestCallId = "GET EMERGENCY CONTACT";
     final String createECRestCallId = "POST EMERGENCY CONTACT";
     final String updateECRestCallId = "PUT EMERGENCY CONTACT";
@@ -34,29 +37,36 @@ public class ManageEmergencyContactActivity extends Activity implements RestCall
         super.onCreate(bundle);
         Intent intent = this.getIntent();
         mPatientId = intent.getStringExtra("PatientId");
-        String url = ConfigConstant.BASE_URL + "/patient/emergencyContact/" + mPatientId;
-        System.out.println(url);
-        MocRestClient client = new MocRestClient(getECRestCallId, url, MocRestClient.GET, "", this);
+
+        String url = ConfigConstant.BASE_URL + "/search?sheet=emergencycontact&P_ID=" + mPatientId + "&single_object=true";
+        //https://sheetdb.io/api/v1/ahhtehepl6e9f/search?sheet=emergencycontact&P_ID=1&single_object=true  selecciona el contacto
+        //de emergencia del paciente 1
+        System.out.println("Url para obtener el contacto de emergencia de este paciente " + url);
+        EolRestClient client = new EolRestClient(getECRestCallId, url, EolRestClient.GET, "", this);
         System.out.println("Before Starting client connection");
         client.execute();
     }
 
-    public void addInitialEmergencyContact(View v){
+    // ADDS AN INITIAL EMERGENCY CONTACT when pressing the right button it goes to the blue form created for adding an emergency contact
+    public void addInitialEmergencyContact(View v) {
+        //goes to blue form
         setContentView(R.layout.activity_addemergencycontact);
     }
 
-    public void backFromECinitial(View v){
+    public void backFromECinitial(View v) {
         this.finish();
     }
-    public void backFromEC (View v){
+
+    public void backFromEC(View v) {
         this.finish();
     }
-    public void backFromAddEC(View V){
-        //TODO return to main patient activity
+
+    public void backFromAddEC(View V) {
+        this.finish();
         //setContentView(R.layout.activity_sidemenu);
     }
 
-    private void populateECLayoutEditTextValues(EmergencyContact ec){
+    private void populateECLayoutEditTextValues(EmergencyContact ec) {
         EditText firstnameEditText = (EditText) findViewById(R.id.firstnameEditText);
         EditText lastnameEditText = (EditText) findViewById(R.id.lastnameEditText);
         EditText emailIdEditText = (EditText) findViewById(R.id.emailIdEditText);
@@ -72,7 +82,8 @@ public class ManageEmergencyContactActivity extends Activity implements RestCall
         relationEditText.setText(ec.getRelation());
     }
 
-    public void saveEmergencyContact(View v){
+    // when SAVE button is pressed ....
+    public void saveEmergencyContact(View v) {
         EditText firstnameEditText = (EditText) findViewById(R.id.firstnameEditText);
         EditText lastnameEditText = (EditText) findViewById(R.id.lastnameEditText);
         EditText emailIdEditText = (EditText) findViewById(R.id.emailIdEditText);
@@ -90,14 +101,18 @@ public class ManageEmergencyContactActivity extends Activity implements RestCall
         String address = addressEditText.getText().toString();
         String relation = relationEditText.getText().toString();
 
-        mEmergencyContactUnsaved = new EmergencyContact(mEmergencyContact.getId(),firstname, lastname, emailId, contact, address, relation);
+
+        mEmergencyContactUnsaved = new EmergencyContact(mEmergencyContact.getId(), firstname, lastname, emailId, contact, address, relation);
         JSONObject body = JSONUtil.convertEmergencyContactToJSONUpdate(mEmergencyContactUnsaved, mPatientId);
-        String url = ConfigConstant.BASE_URL + "/patient/emergencyContact/update" ;
-        MocRestClient client = new MocRestClient(updateECRestCallId, url, MocRestClient.PUT, body.toString(), this);
+        String url = ConfigConstant.BASE_URL + "/P_ID/" + mPatientId + "?sheet=emergencycontact";
+        //https://sheetdb.io/api/v1/ahhtehepl6e9f/P_ID/1?sheet=emergencycontact
+        // response 200 OK, updated 1
+        EolRestClient client = new EolRestClient(updateECRestCallId, url, EolRestClient.PUT, body.toString(), this);
         client.execute();
     }
 
-    public void addEmergencyContact(View v){
+    // when the blue AddEmergencyContact form is created and SAVE button is pressed
+    public void addEmergencyContact(View v) {
         EditText firstnameEditText = (EditText) findViewById(R.id.firstnameET);
         EditText lastnameEditText = (EditText) findViewById(R.id.lastnameET);
         EditText emailIdEditText = (EditText) findViewById(R.id.emailIdET);
@@ -114,42 +129,49 @@ public class ManageEmergencyContactActivity extends Activity implements RestCall
 
         mEmergencyContactUnsaved = new EmergencyContact(firstname, lastname, emailId, contact, address, relation);
         JSONObject body = JSONUtil.convertEmergencyContactToJSON(mEmergencyContactUnsaved, mPatientId);
-        String url = ConfigConstant.BASE_URL + "/patient/emergencyContact/add" ;
-        MocRestClient client = new MocRestClient(createECRestCallId, url, MocRestClient.POST, body.toString(), this);
+        System.out.println("Esta es la cadena que pasa el Objeto EC  a JSON" +body.toString());
+        String url = ConfigConstant.BASE_URL + "?sheet=emergencycontact";
+        EolRestClient client = new EolRestClient(createECRestCallId, url, EolRestClient.POST, body.toString(), this);
         client.execute();
     }
 
-    public void deleteEmergencyContact(View v){
-        String url = ConfigConstant.BASE_URL + "/patient/emergencyContact/delete/" + mEmergencyContact.getId();
+    public void deleteEmergencyContact(View v) {
+        //String url = ConfigConstant.BASE_URL + "/P_ID/"+ mEmergencyContact.getId()+ "?sheet=emergencycontact" ;
+        String url = ConfigConstant.BASE_URL + "/P_ID/" + mPatientId + "?sheet=emergencycontact";
+        //https://sheetdb.io/api/v1/ahhtehepl6e9f/P_ID/1?sheet=emergencycontact
         String body = "";
-        MocRestClient client = new MocRestClient(deleteECRestCallId, url, MocRestClient.DELETE, "", this);
+        EolRestClient client = new EolRestClient(deleteECRestCallId, url, EolRestClient.DELETE, "", this);
         client.execute();
     }
 
 
     @Override
-    public void handleResponse(MocRestClient client) {
+    public void handleResponse(EolRestClient client) {
         try {
-            if(client.getId().equals(getECRestCallId)) {
+            if (client.getId().equals(getECRestCallId)) {
                 if (client.getResponseCode() == 200) {
-                    JSONObject response = new JSONObject(client.getResponseBody());
-                    if (response.length() == 0) {
-                        System.out.println("no eC returned");
+                    String procesar = client.getResponseBody();
+                    if (procesar.contains("[]")) {
+                        System.out.println("no Emergency Contact EC returned");
                         setContentView(R.layout.activity_emergencycontactinitial);
                     } else {
-                        System.out.println("EC is returned" + response);
+                        JSONObject response = new JSONObject(client.getResponseBody());
+                        System.out.println("Emergency Contect EC  is returned" + response);
                         setContentView(R.layout.activity_emergencycontact);
                         mEmergencyContact = JSONUtil.parseEmergencyContactFromJSON(response);
                         populateECLayoutEditTextValues(mEmergencyContact);
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Server Error, Please try again !", Toast.LENGTH_LONG).show();
                 }
-            } else if (client.getId().equals(createECRestCallId)){
-                if (client.getResponseCode() == 200) {
-                    JSONObject body = new JSONObject(client.getResponseBody());
-                    int dependentId = Integer.valueOf(body.getString("Dependent ID"));
+            } else if (client.getId().equals(createECRestCallId)) {
+                if (client.getResponseCode() == 201) {
+                    // if (client.getResponseCode() == 200) {
+                    //JSONObject body = new JSONObject(client.getResponseBody());
+                    //int dependentId = Integer.valueOf(body.getString("Dependent ID"));
+                    int intdependentId = Integer.valueOf(mPatientId) * 2;
+                    String dependentId = intdependentId + "";
+
                     mEmergencyContact = new EmergencyContact(dependentId, mEmergencyContactUnsaved.getFirstname(),
                             mEmergencyContactUnsaved.getLastname(), mEmergencyContactUnsaved.getContact(),
                             mEmergencyContactUnsaved.getEmailId(), mEmergencyContactUnsaved.getAddress(),
@@ -180,7 +202,7 @@ public class ManageEmergencyContactActivity extends Activity implements RestCall
                 }
             } else if (client.getId().equals(deleteECRestCallId)) {
                 if (client.getResponseCode() == 200) {
-                    // make toast about successful deleteion
+                    // make toast about successful deletion
                     Toast.makeText(getApplicationContext(), "Emergency Contact deleted successfully!", Toast.LENGTH_LONG).show();
                     mEmergencyContact = null;
                     Thread.sleep(1000);
@@ -191,7 +213,8 @@ public class ManageEmergencyContactActivity extends Activity implements RestCall
                     Toast.makeText(getApplicationContext(), "Server Error, Please try again!", Toast.LENGTH_LONG).show();
                 }
             }
-        } catch(Exception e) {
+        } catch (
+                Exception e) {
             e.printStackTrace();
         }
     }

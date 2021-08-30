@@ -253,16 +253,17 @@
         android:paddingBottom="20dp"
         android:paddingLeft="80dp"
         android:paddingRight="80dp">
+
         <Button
             android:id="@+id/saveButton"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:background="@color/colorPrimary"
-            android:text ="@string/btn_saveEC_label"
+            android:onClick="saveEmergencyContact"
+            android:text="@string/btn_saveEC_label"
             android:textColor="@color/white"
-            android:textSize="15dp"
-            android:onClick="saveEmergencyContact"/>
+            android:textSize="15dp" />
         <Button
             android:id="@+id/delete1Button"
             android:layout_width="80dp"

@@ -41,17 +41,17 @@ import java.util.List;
 
 public class PatientAddAppointmentActivity extends AppCompatActivity implements View.OnClickListener {
 
-
-    EditText editTextAppDesc;
-    EditText editTextAppDate;
-    Spinner spinnerDoc;
-    ArrayAdapter<String> docSpinArrayAdapter;
-    Button btnAddAppointment;
-    HashMap<String,String> docHashMap;
-    String patient_id;
-    String doctor_id;
-    SessionManager sessionManager;
+    private EditText editTextAppDesc;
+    private EditText editTextAppDate;
+    private Spinner spinnerDoc;
+    private ArrayAdapter<String> docSpinArrayAdapter;
+    private Button btnAddAppointment;
+    private HashMap<String,String> docHashMap;
+    private String patient_id;
+    private String doctor_id;
+    private SessionManager sessionManager;
     private String Url="";
+    private Uri docUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,10 +162,10 @@ public class PatientAddAppointmentActivity extends AppCompatActivity implements 
                 try {
 
                     JSONObject donationObj = new JSONObject();
-                    donationObj.put("description", getDataFromEditText(editTextAppDesc));
+                    donationObj.put("Appointment_Description", getDataFromEditText(editTextAppDesc));
                     donationObj.put("P_ID",pat_id);
                     donationObj.put("D_ID",doc_id);
-                    donationObj.put("status","Requested");
+                    donationObj.put("Appointment_Status","Requested");
                     donationObj.put("Reminder_DateTime",getDataFromEditText(editTextAppDate));
 
                     OutputStreamWriter os = new OutputStreamWriter(urlConnection.getOutputStream());
@@ -278,7 +278,7 @@ public class PatientAddAppointmentActivity extends AppCompatActivity implements 
 
 
 
-                Uri docUri=Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).build();
+                docUri =Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).build();
 
                 URL url=new URL(docUri.toString());
 

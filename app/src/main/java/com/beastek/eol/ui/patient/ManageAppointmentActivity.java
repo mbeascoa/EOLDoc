@@ -34,7 +34,7 @@ public class ManageAppointmentActivity extends Activity implements RestCallbackH
         Intent intent = this.getIntent();
         mPatientId = intent.getStringExtra("PatientId");
         String url = ConfigConstant.BASE_URL + "/patient/appointment/" + mPatientId;
-        MocRestClient client = new MocRestClient(getAPTRestCallId, url, MocRestClient.GET, "", this);
+        EolRestClient client = new EolRestClient(getAPTRestCallId, url, EolRestClient.GET, "", this);
         client.execute();
     }
 
@@ -74,7 +74,7 @@ public class ManageAppointmentActivity extends Activity implements RestCallbackH
         mAppointmentUnsaved = new Appointment(description, appointmentDate, status, Integer.valueOf(mPatientId), Integer.valueOf(doctorId));
         JSONObject body = JSONUtil.convertAppointmentToJSON(mAppointmentUnsaved, mPatientId);
         String url = ConfigConstant.BASE_URL + "/patient/appointment/add" ;
-        MocRestClient client = new MocRestClient(createAPTRestCallId, url, MocRestClient.POST, body.toString(), this);
+        EolRestClient client = new EolRestClient(createAPTRestCallId, url, EolRestClient.POST, body.toString(), this);
         client.execute();
         AddAptButton.setEnabled(false);
         AddAptButton.setBackgroundColor(getResources().getColor(R.color.colorGrey));
@@ -84,13 +84,13 @@ public class ManageAppointmentActivity extends Activity implements RestCallbackH
     public void deleteAppointment(View v){
         String url = ConfigConstant.BASE_URL + "/patient/appointment/delete/" + mPatientId + "/" + mAppointment.getId();
         String body = "";
-        MocRestClient client = new MocRestClient(deleteAPTRestCallId, url, MocRestClient.DELETE, "", this);
+        EolRestClient client = new EolRestClient(deleteAPTRestCallId, url, EolRestClient.DELETE, "", this);
         client.execute();
     }
 
 
     @Override
-    public void handleResponse(MocRestClient client) {
+    public void handleResponse(EolRestClient client) {
         try {
             if(client.getId().equals(getAPTRestCallId)) {
                 if (client.getResponseCode() == 200) {

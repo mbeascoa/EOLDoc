@@ -91,7 +91,7 @@ public class ReminderMainActivity extends AppCompatActivity {
             }
         });
 
-        //El floating action button crea una una tarea (task)
+        //El floating action button crea una nueva tarea (task) utilizando SQLLite
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addTask);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +113,7 @@ public class ReminderMainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-
+/*
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //Let.handle(this, requestCode, permissions, grantResults);
@@ -144,7 +144,7 @@ public class ReminderMainActivity extends AppCompatActivity {
             }
         }
     }
-
+*/
 
     // 00 método  para infrar el menu superior
     @Override

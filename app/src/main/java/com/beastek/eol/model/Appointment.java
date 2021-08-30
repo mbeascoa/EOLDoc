@@ -20,7 +20,7 @@ public class Appointment {
     }
     // construtor with INVALID_ID when this value is not provided
     public Appointment(String DescriptionIn, String Reminder_DateIn, String Appointment_StatusIn, int PAT_IDIn, int DOC_IDIn){
-        Appointment_ID = ConfigConstant.INVALID_ID;
+        Appointment_ID = Integer.valueOf(ConfigConstant.INVALID_ID);
         Description = DescriptionIn;
         appointmentDate = Reminder_DateIn;
         Appointment_Status = Appointment_StatusIn;

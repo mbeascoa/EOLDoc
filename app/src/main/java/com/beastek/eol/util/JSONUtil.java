@@ -24,7 +24,9 @@ public class JSONUtil {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        EmergencyContact ec = new EmergencyContact(Integer.valueOf(dependentId),firstname,lastname,emailId,contact,address,relation);
+        //EmergencyContact ec = new EmergencyContact(Integer.valueOf(dependentId),firstname,lastname,emailId,contact,address,relation);
+        EmergencyContact ec = new EmergencyContact(dependentId,firstname,lastname,emailId,contact,address,relation);
+
         return ec;
     }
 
@@ -32,14 +34,14 @@ public class JSONUtil {
         JSONObject json = new JSONObject();
         try {
             if (ec != null) {
-                json.accumulate("patientId", patientId);
-                json.accumulate("dependentId", ec.getId());
-                json.accumulate("firstname", ec.getFirstname());
-                json.accumulate("lastname", ec.getLastname());
-                json.accumulate("emailId", ec.getEmailId());
-                json.accumulate("contact", ec.getContact());
-                json.accumulate("address", ec.getAddress());
-                json.accumulate("relation", ec.getRelation());
+                json.accumulate("P_ID", patientId);
+                json.accumulate("Dependent_Id", ec.getId());
+                json.accumulate("Firstname", ec.getFirstname());
+                json.accumulate("Lastname", ec.getLastname());
+                json.accumulate("EmailId", ec.getEmailId());
+                json.accumulate("Contact", ec.getContact());
+                json.accumulate("Address", ec.getAddress());
+                json.accumulate("Relation", ec.getRelation());
             }
         }catch (JSONException e) {
             e.printStackTrace();
@@ -50,14 +52,14 @@ public class JSONUtil {
         JSONObject json = new JSONObject();
         try {
             if (ec != null) {
-                json.accumulate("patientId", patientId);
-                json.accumulate("dependent_id", ec.getId());
-                json.accumulate("new_firstname", ec.getFirstname());
-                json.accumulate("new_lastname", ec.getLastname());
-                json.accumulate("new_emailId", ec.getEmailId());
-                json.accumulate("new_contact", ec.getContact());
-                json.accumulate("new_address", ec.getAddress());
-                json.accumulate("new_relation", ec.getRelation());
+                json.accumulate("P_ID", patientId);
+                json.accumulate("Dependent_id", ec.getId());
+                json.accumulate("Firstname", ec.getFirstname());
+                json.accumulate("Lastname", ec.getLastname());
+                json.accumulate("EmailId", ec.getEmailId());
+                json.accumulate("Contact", ec.getContact());
+                json.accumulate("Address", ec.getAddress());
+                json.accumulate("Relation", ec.getRelation());
             }
         }catch (JSONException e) {
             e.printStackTrace();

@@ -140,6 +140,15 @@ public class PatientAppointmentFragment extends Fragment {
                 JSONObject jsonObject=jsonArray.getJSONObject(i);
 
                 PatientAppointmentStructure donationObj=new PatientAppointmentStructure(jsonObject);
+                String appointment_date_time = jsonObject.getString("Reminder_DateTime");
+                String appointment_status = jsonObject.getString("Appointment_Status");
+                String appointment_desc=jsonObject.getString("Appointment_Description");
+                String appointment_id=jsonObject.getString("Appointment_Id");
+
+                donationObj.setAppointment_date_time(appointment_date_time);
+                donationObj.setAppointment_status(appointment_status);
+                donationObj.setAppointment_desc(appointment_desc);
+                donationObj.setAppointment_id(appointment_id);
 
                 appmtList.add(donationObj);
             }
@@ -162,9 +171,13 @@ public class PatientAppointmentFragment extends Fragment {
                 String baseUrl= ConfigConstant.BASE_URL;
                 final String PATH_PARAM = ConfigConstant.PAT_APPOINTMENT_LIST_ENDPOINT;
                 final String pat_id=params[0];
+                //En este caso nos da la relación de los appointments que tiene un deteminado paciente. P_ID=1
+                //https://sheetdb.io/api/v1/ahhtehepl6e9f/search?sheet=addappointment&P_ID=1
 
-                Uri appUri=Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(pat_id).build();
-
+                Uri appUriParcial=Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(pat_id).build();
+                String appUripar= appUriParcial.toString();
+                String appUri= appUripar.replaceAll("=/","=");
+                //en la construccion de la Uri se mete un =/1 que debe ser un =1 por eso se quita
                 URL url=new URL(appUri.toString());
 
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -194,6 +207,7 @@ public class PatientAppointmentFragment extends Fragment {
 
 
                 Log.v(LOG_TAG,"AppListStr: "+appListJson);
+                System.out.println("Patient Appointment List gathered from Google Sheets :"+ appListJson);
 
             }catch (IOException e){
 

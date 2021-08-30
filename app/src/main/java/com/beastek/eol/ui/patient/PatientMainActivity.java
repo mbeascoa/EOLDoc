@@ -345,7 +345,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
                 intent = new Intent(PatientMainActivity.this, ActivityHealthDataRequests.class);
                 startActivity(intent);
                 break;
-            case 5:  //Emergency Contact
+            case 5:  //Emergency Contact managed by EolRestClient
                 intent = new Intent(this, ManageEmergencyContactActivity.class);
                 intent.putExtra("PatientId", patient_id);
                 startActivity(intent);

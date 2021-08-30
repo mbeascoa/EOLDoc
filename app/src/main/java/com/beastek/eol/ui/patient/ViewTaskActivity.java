@@ -18,6 +18,8 @@ import com.beastek.eol.data.TaskDBHelper;
 import com.beastek.eol.model.Task;
 import com.beastek.eol.util.DateUtil;
 
+// Using SQLLite in order to VIEW the task,,,
+
 public class ViewTaskActivity extends AppCompatActivity {
 
     private int id;

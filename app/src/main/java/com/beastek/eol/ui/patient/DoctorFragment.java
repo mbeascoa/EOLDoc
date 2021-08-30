@@ -48,10 +48,11 @@ public class DoctorFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private DocFragmentInteractionListener fragListener;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerViewDoctor;
-    DocListAdapter DoctorListAdapter;
-    SessionManager sessionManager;
+    private DocListAdapter DoctorListAdapter;
+    private SessionManager sessionManager;
     private String pt_id;
-    DoctorFragmentToDoctorActivity doctorItemListener;
+    private DoctorFragmentToDoctorActivity doctorItemListener;
+    private Uri docUri;
 
     @Nullable
     @Override
@@ -204,7 +205,7 @@ public class DoctorFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
 
                 //Uri docUri= Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(PAT_ID).build();
-                Uri docUri= Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).build();
+                docUri= Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).build();
                 URL url=new URL(docUri.toString());
 
                 urlConnection = (HttpURLConnection) url.openConnection();

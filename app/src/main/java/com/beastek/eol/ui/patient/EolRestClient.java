@@ -18,7 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class MocRestClient extends AsyncTask<Void, Void, Void> {
+public class EolRestClient extends AsyncTask<Void, Void, Void> {
     public static final String GET = "GET";
     public static final String POST = "POST";
     public static final String PUT = "PUT";
@@ -28,7 +28,7 @@ public class MocRestClient extends AsyncTask<Void, Void, Void> {
     private int responseCode;
     private RestCallbackHandler handler;
 
-    public MocRestClient(String idIn, String urlIn, String methodNameIn, String bodyIn, RestCallbackHandler handlerIn) {
+    public EolRestClient(String idIn, String urlIn, String methodNameIn, String bodyIn, RestCallbackHandler handlerIn) {
         id = idIn;
         endPoint = urlIn;
         methodName = methodNameIn;
