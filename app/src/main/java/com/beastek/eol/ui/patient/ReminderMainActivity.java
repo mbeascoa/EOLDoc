@@ -146,7 +146,7 @@ public class ReminderMainActivity extends AppCompatActivity {
     }
 */
 
-    // 00 método  para infrar el menu superior
+    // 00 método  para inflar el menu superior
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -167,39 +167,4 @@ public class ReminderMainActivity extends AppCompatActivity {
 }
 
 
-
-
-
-
-/*
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-
-        int id = item.getItemId();
-
-        Intent accion;
-
-        if (id== R.id.item_consultar)
-        {
-            Intent i = new Intent(this, Listado_registros.class);
-            startActivity(i);
-
-        }else if (id== R.id.item_alta_registro) {
-            Intent i = new Intent(this, Alta_registro.class);
-            startActivity(i);
-        } else if( id== R.id.item_signup){
-            Intent i = new Intent(this, SignUp_Registro.class);
-            startActivity(i);
-        }else if (id== R.id.item_navegar){
-
-            //accion = new Intent("android.intent.action.VIEW", Uri.parse("http://developer.android.com"));
-            accion = new Intent(this, Buscarporid.class);
-            startActivity(accion);
-        }
-        return true;
-    }
-
-     */
 
