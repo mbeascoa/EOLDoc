@@ -178,7 +178,7 @@ public class PatientAppointmentFragment extends Fragment {
                 String appUripar= appUriParcial.toString();
                 String appUri= appUripar.replaceAll("=/","=");
                 //en la construccion de la Uri se mete un =/1 que debe ser un =1 por eso se quita
-                URL url=new URL(appUri.toString());
+                URL url=new URL(appUri);
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");

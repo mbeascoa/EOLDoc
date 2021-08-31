@@ -124,13 +124,16 @@ public class AppointmentDetailActivity extends AppCompatActivity implements View
 
             apmt_id=param[0];
             new_status=param[1];
+            String coletillafinal = apmt_id+"?sheet=addappointment";
 
             try {
                 String base_url = ConfigConstant.BASE_URL;
                 final String APPT_PATH_PARAM = ConfigConstant.APPOINTMENT_STATUS_UPDATE;
 
+                //https://sheetdb.io/api/v1/ahhtehepl6e9f/Appointment_Id/1?sheet=addappointment
 
-                Uri apptUpdateUri = Uri.parse(base_url).buildUpon().appendEncodedPath(APPT_PATH_PARAM).build();
+
+                Uri apptUpdateUri = Uri.parse(base_url).buildUpon().appendEncodedPath(APPT_PATH_PARAM).appendEncodedPath(coletillafinal).build();
 
                 URL url = new URL(apptUpdateUri.toString());
 
@@ -144,8 +147,8 @@ public class AppointmentDetailActivity extends AppCompatActivity implements View
                 try {
 
                     JSONObject apmtObj = new JSONObject();
-                    apmtObj.put("appointment_id",apmt_id);
-                    apmtObj.put("new_status",new_status);
+                    apmtObj.put("Appointment_Id",apmt_id);
+                    apmtObj.put("Appointment_Status",new_status);
 
                     OutputStreamWriter os = new OutputStreamWriter(urlConnection.getOutputStream());
                     os.write(apmtObj.toString());

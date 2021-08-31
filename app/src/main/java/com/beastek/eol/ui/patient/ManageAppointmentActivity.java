@@ -19,8 +19,7 @@ import org.json.JSONObject;
 
 public class ManageAppointmentActivity extends Activity implements RestCallbackHandler {
     String mPatientId;
-    //final String baseURL = "http://ec2-34-201-144-36.compute-1.amazonaws.com:8080/MoC_Medicare_Backend/";
-    final String baseURL = "http://192.168.56.1:8080/MoC_Medicare_Backend/";
+
     final String getAPTRestCallId = "GET APPOINTMENT LIST";
     final String createAPTRestCallId = "POST APPOINTMENT";
     final String updateAPTRestCallId = "PUT APPOINTMENT";

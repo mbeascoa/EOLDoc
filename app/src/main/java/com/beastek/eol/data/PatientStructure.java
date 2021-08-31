@@ -17,6 +17,46 @@ public class PatientStructure {
     public String contact_num;
     public String address;
 
+    public void setPatientid(String patient_id) {
+        this.patient_id = patient_id;
+    }
+
+    public void setPatientfname(String patient_fname) {
+        this.patient_fname = patient_fname;
+    }
+
+    public void setPatientlname(String patient_lname) {
+        this.patient_lname = patient_lname;
+    }
+
+    public void setPatientDob(String dob) {
+        this.dob = dob;
+    }
+
+    public void setPatientGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setPatientWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public void setPatientAge(String age) {
+        this.age = age;
+    }
+
+    public void setPatientEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPatientContactNum(String contact_num) {
+        this.contact_num = contact_num;
+    }
+
+    public void setPatientAddress(String address) {
+        this.address = address;
+    }
+
     public String getPatient_id() {
         return patient_id;
     }
@@ -60,16 +100,16 @@ public class PatientStructure {
     public PatientStructure(JSONObject jsonObject){
 
         try {
-            patient_id=jsonObject.getString("Patient_Id");
-            patient_fname=jsonObject.getString("Firstname");
-            patient_lname=jsonObject.getString("Lastname");
+            patient_id=jsonObject.getString("P_Id");
+            patient_fname=jsonObject.getString("firstname");
+            patient_lname=jsonObject.getString("lastname");
             dob=jsonObject.getString("DOB");
-            gender=jsonObject.getString("Gender");
-            weight=jsonObject.getString("Weight");
-            age=jsonObject.getString("Age");
-            email=jsonObject.getString("Email_Id");
-            contact_num=jsonObject.getString("ContactNo");
-            address=jsonObject.getString("Address");
+            gender=jsonObject.getString("gender");
+            weight=jsonObject.getString("weight");
+            age=jsonObject.getString("age");
+            email=jsonObject.getString("emailId");
+            contact_num=jsonObject.getString("contactNo");
+            address=jsonObject.getString("address");
 
 
         }catch (JSONException e){

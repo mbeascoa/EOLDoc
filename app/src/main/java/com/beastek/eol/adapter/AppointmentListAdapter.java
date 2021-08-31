@@ -43,6 +43,8 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
 
         AppointmentStructure appObj = appointmentList.get(position);
         holder.patientName.setText(appObj.getPatient_name());
+
+        //depending the appointment status we add a color to it.
         if(appObj.getAppointment_status().equals(context.getResources().getString(R.string.appt_status_requested))) {
             holder.status.setText("Request Pending");
             holder.status.setTextColor(ContextCompat.getColor(context,R.color.yellowColor));
@@ -56,14 +58,15 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
             holder.status.setTextColor(ContextCompat.getColor(context,R.color.redColor));
             //equals. "Declined" se pone en rojo
         }
-        String date=convertDate(appObj.getAppointment_date_time());
+        //String date=convertDate(appObj.getAppointment_date_time());
+        String date = appObj.getAppointment_date_time();
         holder.appDate.setText(date);
         holder.appDesc.setText(appObj.getAppointment_desc());
 
     }
 
 
-
+    // we keep the data in string format, not in Date format in Google Sheet, when working with Database we will use this
     private String convertDate(String input_date){
         SimpleDateFormat inputDateFormat=new SimpleDateFormat("yyyy-MM-dd");
         Date p_date=null;

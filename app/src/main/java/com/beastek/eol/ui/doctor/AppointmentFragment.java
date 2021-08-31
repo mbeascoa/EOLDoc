@@ -23,11 +23,13 @@ import com.beastek.eol.R;
 import com.beastek.eol.adapter.AppointmentListAdapter;
 import com.beastek.eol.data.AppointmentData;
 import com.beastek.eol.data.AppointmentStructure;
+import com.beastek.eol.data.PatientStructure;
 import com.beastek.eol.ui.SessionManager;
 import com.beastek.eol.utility.ConfigConstant;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -129,7 +131,22 @@ public class AppointmentFragment extends Fragment implements SwipeRefreshLayout.
 
             for(int i=0;i<jsonArray.length();i++){
 
-                appObj=new AppointmentStructure(jsonArray.getJSONObject(i));
+                JSONObject jsonObject=jsonArray.getJSONObject(i);
+                appObj=new AppointmentStructure(jsonObject);
+
+                String patient_fullname=jsonObject.getString("Patient_FullName");
+                String appdatetime=jsonObject.getString("Reminder_DateTime");
+                String appstatus=jsonObject.getString("Appointment_Status");
+                String appdescription=jsonObject.getString("Appointment_Description");
+                String appid=jsonObject.getString("Appointment_Id");
+
+
+                appObj.setPatient_name(patient_fullname);
+                appObj.setAppointment_date_time(appdatetime);
+                appObj.setAppointment_status(appstatus);
+                appObj.setAppointment_desc(appdescription);
+                appObj.setAppointment_id(appid);
+
                 appointmentData.add(appObj);
 
             }
@@ -152,11 +169,15 @@ public class AppointmentFragment extends Fragment implements SwipeRefreshLayout.
                 String baseUrl= ConfigConstant.BASE_URL;
                 final String PATH_PARAM = ConfigConstant.DOC_APPOINTMENT_LIST_ENDPOINT;
                 final String DOCTOR_ID=params[0];
+                //En este caso nos da la relación de los appointments que tiene un deteminado doctor. D_ID=1
+                //https://sheetdb.io/api/v1/ahhtehepl6e9f/search?sheet=addappointment&D_ID=1
 
 
-                Uri appointmtUri=Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(DOCTOR_ID).build();
+                Uri appointmtUriParcial = Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(DOCTOR_ID).build();
 
-                URL url=new URL(appointmtUri.toString());
+               String appointmtUripar= appointmtUriParcial.toString();
+                String appointmtUri= appointmtUripar.replaceAll("=/","=");
+                URL url=new URL(appointmtUri);
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");

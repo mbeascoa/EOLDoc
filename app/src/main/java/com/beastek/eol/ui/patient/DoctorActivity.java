@@ -70,11 +70,12 @@ public class DoctorActivity extends AppCompatActivity implements DoctorFragmentT
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==ADD_DOCTOR_RESULT_CODE){
-            if(resultCode==RESULT_OK){
-                DoctorFragment docFragment=(DoctorFragment)getSupportFragmentManager().findFragmentById(R.id.frame_doclist);
+        super.onActivityResult(requestCode, resultCode, data);  //TODO
+        if (requestCode == ADD_DOCTOR_RESULT_CODE) {
+            if (resultCode == RESULT_OK) {
+                DoctorFragment docFragment = (DoctorFragment) getSupportFragmentManager().findFragmentById(R.id.frame_doclist);
                 docFragment.updateDoctorList();
-            }else if(resultCode==RESULT_CANCELED){
+            } else if (resultCode == RESULT_CANCELED) {
 
             }
         }

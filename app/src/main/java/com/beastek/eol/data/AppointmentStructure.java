@@ -17,20 +17,41 @@ public class AppointmentStructure {
 
         try {
             patient_name = jsonObject.getString("Patient_FullName");
-            appointment_date_time = jsonObject.getString("Reminder_Date");
+            appointment_date_time = jsonObject.getString("Reminder_DateTime");
             appointment_status = jsonObject.getString("Appointment_Status");
-            appointment_desc=jsonObject.getString("Description");
+            appointment_desc=jsonObject.getString("Appointment_Description");
             appointment_id=jsonObject.getString("Appointment_Id");
+
 
         }catch (JSONException e){
             e.printStackTrace();
         }
     }
 
+
+    public void setPatient_name(String patient_name) {
+        this.patient_name = patient_name;
+    }
+
+    public void setAppointment_date_time(String appointment_date_time) {
+        this.appointment_date_time = appointment_date_time;
+    }
+
+    public void setAppointment_status(String appointment_status) {
+        this.appointment_status = appointment_status;
+    }
+
+    public void setAppointment_desc(String appointment_desc) {
+        this.appointment_desc = appointment_desc;
+    }
+
+    public void setAppointment_id(String appointment_id) {
+        this.appointment_id = appointment_id;
+    }
+
     public String getPatient_name() {
         return patient_name;
     }
-
 
     public String getAppointment_date_time() {
         return appointment_date_time;

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.beastek.eol.Extras.Interface.DoctorFragmentToDoctorActivity;
 import com.beastek.eol.Extras.Interface.PatientAdapterToPatientFragment;
 import com.beastek.eol.Extras.Interface.PatientFragmentToPatientActivity;
 import com.beastek.eol.R;
@@ -27,6 +28,7 @@ import com.beastek.eol.utility.ConfigConstant;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,10 +44,13 @@ public class PatientFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerViewPatient;
-    PatientListAdapter patientListAdapter;
-    SessionManager sessionManager;
+    private PatientListAdapter patientListAdapter;
+    private SessionManager sessionManager;
     private String doc_id;
-    PatientFragmentToPatientActivity patientItemListener;
+    private PatientFragmentToPatientActivity patientItemListener;
+   private Uri docUri;
+
+
 
     @Nullable
     @Override
@@ -123,8 +128,31 @@ public class PatientFragment extends Fragment implements SwipeRefreshLayout.OnRe
             JSONArray jsonArray=new JSONArray(appJsonStr);
 
             for(int i=0;i<jsonArray.length();i++){
+                JSONObject jsonObject=jsonArray.getJSONObject(i);
+                patObj=new PatientStructure(jsonObject);
 
-                patObj=new PatientStructure(jsonArray.getJSONObject(i));
+                String patient_id=jsonObject.getString("P_ID");
+                String patient_fname=jsonObject.getString("firstname");
+                String patient_lname=jsonObject.getString("lastname");
+                String patient_dob=jsonObject.getString("DOB");
+                String patient_gender=jsonObject.getString("gender");
+                String patient_weight=jsonObject.getString("weight");
+                String patient_age=jsonObject.getString("age");
+                String patient_email=jsonObject.getString("emailId");
+                String patient_contact_num=jsonObject.getString("contactNo");
+                String patient_address=jsonObject.getString("address");
+
+                patObj.setPatientid(patient_id);
+                patObj.setPatientfname(patient_fname);
+                patObj.setPatientlname(patient_lname);
+                patObj.setPatientDob(patient_dob);
+                patObj.setPatientGender(patient_gender);
+                patObj.setPatientWeight(patient_weight);
+                patObj.setPatientAge(patient_age);
+                patObj.setPatientEmail(patient_email);
+                patObj.setPatientContactNum(patient_contact_num);
+                patObj.setPatientAddress((patient_address));
+
                 patientData.add(patObj);
 
             }
@@ -145,14 +173,19 @@ public class PatientFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
             try{
                 String baseUrl= ConfigConstant.BASE_URL;
-                final String PATH_PARAM = ConfigConstant.DOC_PATIENT_LIST_ENDPOINT;
+
+
                 final String DOC_ID=params[0];
+                //String DOC_PATIENT_LIST_ENDPOINT="search?sheet=insertpatient&P_ID="
+                final String PATH_PARAM = ConfigConstant.DOC_PATIENT_LIST_ENDPOINT + DOC_ID;
+                // la cadena correcta es https://sheetdb.io/api/v1/ahhtehepl6e9f/search?sheet=insertpatient&D_ID=1 para consultar
+                //por el D_ID= 1 ;  que es el DOC_ID
 
 
+                //Uri docUri= Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(PAT_ID).build();
+                docUri= Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).build();
 
-                Uri patUri=Uri.parse(baseUrl).buildUpon().appendEncodedPath(PATH_PARAM).appendEncodedPath(DOC_ID).build();
-
-                URL url=new URL(patUri.toString());
+                URL url=new URL(docUri.toString());
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
