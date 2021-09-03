@@ -19,10 +19,11 @@
         android:text="@string/fitbit_logout"/>
 
 
-    <!--<LinearLayout
+    <LinearLayout
         android:id="@+id/fitbit_controls_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -30,15 +31,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_steps"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:text="@string/fitbit_steps_title"/>
 
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/switch_steps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
 
 
         </LinearLayout>
@@ -48,15 +52,19 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_heart_rate"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:text="@string/fitbit_heart_rate_title"/>
 
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/switch_heart_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
 
 
         </LinearLayout>
@@ -66,15 +74,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_calories"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:text="@string/fitbit_calories_title"/>
 
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/switch_calories"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
 
         </LinearLayout>
 
@@ -83,15 +94,21 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fitbit_sleep_title"/>
-
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_sleep"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/fitbit_sleep_title"
+                android:textSize="14sp" />
+
+
 
 
         </LinearLayout>

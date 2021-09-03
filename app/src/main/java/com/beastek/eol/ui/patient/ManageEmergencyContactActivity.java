@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.beastek.eol.Extras.Interface.RestCallbackHandler;
@@ -154,6 +155,8 @@ public class ManageEmergencyContactActivity extends Activity implements RestCall
                     if (procesar.contains("[]")) {
                         System.out.println("no Emergency Contact EC returned");
                         setContentView(R.layout.activity_emergencycontactinitial);
+                        ImageView logo = (ImageView) findViewById(R.id.imageView4);
+                        logo.setImageResource(R.drawable.img2);
                     } else {
                         JSONObject response = new JSONObject(client.getResponseBody());
                         System.out.println("Emergency Contect EC  is returned" + response);

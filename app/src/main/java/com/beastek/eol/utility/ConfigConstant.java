@@ -22,7 +22,12 @@ public class ConfigConstant {
     public static final String DOCTOR_LIST_ENDPOINT="search?sheet=insertdoctor&P_ID=";  //el paciente selecciona la lista de sus doctores
     public static final String ADD_APPOINTMENT_ENDPOINT="https://sheetdb.io/api/v1/38fj4irthplip?sheet=addappointment=";  //el paciente añade appointments post se incluye la BASE URL
 
-    public static final String FITBIT_AUTH_URL="https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=228BFB&redirect_uri=hospapp%3A%2F%2Fcallbackresponse&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800";
+    public static final String FITBIT_AUTH_URL="https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=23BF7P&redirect_uri=https%3A%2F%2Ffinish&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800";
+    public static final String FITBIT_AUTH2_CLIENT="23BF7P";
+    public static final String FITBIT_CLIENT_SECRET ="4d4ea6fd400198a2ce5784f49e6d66da";
+    public static final String FITBIT_REDIRECT_URL ="https://finished";
+    public static final String FITBIT_AUTHORIZATION_URI= "https://www.fitbit.com/oauth2/authorize";
+    public static final String FITBIT_ACCESS_RENEW_TOKEN_REQUEST_URI= "https://api.fitbit.com/oauth2/token";
 
     public static final String PACKAGE_CUSTOM_TAB = "com.android.chrome";
 
@@ -36,9 +41,10 @@ public class ConfigConstant {
     public static final String authenticatePatient = "/search?sheet=patientcredentials&username=";
     public static final String authenticatePatient2 = "&password=";
     public static final String authenticatePatient3 ="&casesensitive=true&single_object=true";
-    public static final String DOCTOR_SPECIALITY="speciality";
-    public static final String PATIENT_EMERGENCY="/patient/emergencyContact/";
-    public static final String PATIENT_ADD_DOCTOR="patient/association/add";
+    public static final String DOCTOR_SPECIALITY="?sheet=speciality";  //spinner specilities
+    public static final String PATIENT_EMERGENCY="/patient/emergencyContact/";  //inicial en patient main activity
+    public static final String PATIENT_ADD_DOCTOR="?sheet=patientdoctorassociation";  // patient adds a doctor
+    // https://sheetdb.io/api/v1/38fj4irthplip?sheet=patientdoctorassociation   para obtener la asociacion entre paciente y doctor de la pestaña patientdoctorassociation
 
     public static final String MYSQL_SERVER_IP = "10.0.0.4";
     public static final String MYSQL_SERVER_PORT= "3306";

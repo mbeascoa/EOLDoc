@@ -12,8 +12,8 @@ import androidx.annotation.Nullable;
 
 
 public class FallDetectService extends Service implements SensorEventListener {
-    public static final String FALL_NOTIFICATION = "com.apurva.accellerometer.FallDetectionService.Fall";
-    public static final String ACCEL_DATA_NOTIFICATION = "com.apurva.accellerometer.FallDetectionService.AccelData";
+    //public static final String FALL_NOTIFICATION = "com.apurva.accellerometer.FallDetectionService.Fall";
+    //public static final String ACCEL_DATA_NOTIFICATION = "com.apurva.accellerometer.FallDetectionService.AccelData";
     public static final String ACCEL_DATA_KEY = "AccelDataKey";
 
     static final int WINDOW_SIZE = 50;
@@ -112,14 +112,14 @@ public class FallDetectService extends Service implements SensorEventListener {
     }
 
     private void publishAccelData(double accel) {
-        Intent intent = new Intent(ACCEL_DATA_NOTIFICATION);
-        intent.putExtra(ACCEL_DATA_KEY, accel);
-        sendBroadcast(intent);
+        //Intent intent = new Intent(ACCEL_DATA_NOTIFICATION);
+        //intent.putExtra(ACCEL_DATA_KEY, accel);
+        //sendBroadcast(intent);
     }
 
     private void publishFall() {
-        Intent intent = new Intent(FALL_NOTIFICATION);
-        sendBroadcast(intent);
+       // Intent intent = new Intent(FALL_NOTIFICATION);
+       // sendBroadcast(intent);
     }
 
     @Override

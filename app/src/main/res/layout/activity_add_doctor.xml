@@ -53,7 +53,6 @@
             android:layout_marginTop="16dp"
             android:background="#1a4c88"
             android:clickable="true"
-            android:onClick="addDoctor"
             android:text="Add"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#fff" />

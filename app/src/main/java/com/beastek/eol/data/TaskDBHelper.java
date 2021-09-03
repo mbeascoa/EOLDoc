@@ -17,7 +17,7 @@ public class TaskDBHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + TaskEntry.TABLE_NAME + " (" +
                     TaskEntry._ID + " INTEGER PRIMARY KEY," +
                     TaskEntry.COLUMN_NAME_TITLE + " VARCHAR(128),"+
-                    TaskEntry.COLUMN_NAME_DECRTIPTION + " TEXT,"+
+                    TaskEntry.COLUMN_NAME_DESCRIPTION + " TEXT,"+
                     TaskEntry.COLUMN_NAME_DATE + " DATETIME,"+
                     TaskEntry.COLUMN_NAME_DONE + " BOOLEAN" +
             " )";
@@ -57,7 +57,7 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(TaskContract.TaskEntry.COLUMN_NAME_TITLE, task.getTitle());
-        values.put(TaskContract.TaskEntry.COLUMN_NAME_DECRTIPTION, task.getDescription());
+        values.put(TaskContract.TaskEntry.COLUMN_NAME_DESCRIPTION, task.getDescription());
         if(task.getDate() != null){
             values.put(TaskContract.TaskEntry.COLUMN_NAME_DATE, task.getDate().getTime());
         }
@@ -73,7 +73,7 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         String[] fields = {
                 TaskContract.TaskEntry._ID,
                 TaskContract.TaskEntry.COLUMN_NAME_TITLE,
-                TaskContract.TaskEntry.COLUMN_NAME_DECRTIPTION,
+                TaskContract.TaskEntry.COLUMN_NAME_DESCRIPTION,
                 TaskContract.TaskEntry.COLUMN_NAME_DATE,
                 TaskContract.TaskEntry.COLUMN_NAME_DONE
         };
@@ -95,7 +95,7 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         String[] fields = {
             TaskContract.TaskEntry._ID,
             TaskContract.TaskEntry.COLUMN_NAME_TITLE,
-            TaskContract.TaskEntry.COLUMN_NAME_DECRTIPTION,
+            TaskContract.TaskEntry.COLUMN_NAME_DESCRIPTION,
             TaskContract.TaskEntry.COLUMN_NAME_DATE,
             TaskContract.TaskEntry.COLUMN_NAME_DONE
         };
@@ -120,26 +120,26 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         String[] fields = {
             TaskContract.TaskEntry._ID,
             TaskContract.TaskEntry.COLUMN_NAME_TITLE,
-            TaskContract.TaskEntry.COLUMN_NAME_DECRTIPTION,
+            TaskContract.TaskEntry.COLUMN_NAME_DESCRIPTION,
             TaskContract.TaskEntry.COLUMN_NAME_DATE,
             TaskContract.TaskEntry.COLUMN_NAME_DONE
         };
 
         Cursor cursor = db.query(
-            TaskContract.TaskEntry.TABLE_NAME,                      // La tabla a consultar
-            fields,                                                 // Las columnas de la tabla a recuperar en la consulta
-            TaskEntry._ID+" = "+id,                        // Las columnas de la cláusula WHERE
-            null,                                     // Los valores de la clausula WHERE
-            null,                                                   // no agrupamos las filas
-            null,                                                   // no filtramos por grupos de filas
-            null                                                    // El criterio de ordenación
+            TaskContract.TaskEntry.TABLE_NAME,                        // La tabla a consultar
+            fields,                                                   // Las columnas de la tabla a recuperar en la consulta
+            TaskEntry._ID+" = "+id,                          // Las columnas de la cláusula WHERE
+            null,                                         // Los valores de la clausula WHERE
+            null,                                             // no agrupamos las filas
+            null,                                              // no filtramos por grupos de filas
+            null                                              // El criterio de ordenación
         );
 
         Task task = new Task();
         if(cursor != null && cursor.moveToFirst()){
             task.set_id( cursor.getInt( cursor.getColumnIndex( TaskEntry._ID )));
             task.setTitle( cursor.getString(cursor.getColumnIndex( TaskEntry.COLUMN_NAME_TITLE )) );
-            task.setDescription( cursor.getString(cursor.getColumnIndex( TaskEntry.COLUMN_NAME_DECRTIPTION )) );
+            task.setDescription( cursor.getString(cursor.getColumnIndex( TaskEntry.COLUMN_NAME_DESCRIPTION )) );
             Long valueDate = cursor.getLong(cursor.getColumnIndex( TaskEntry.COLUMN_NAME_DATE ));
             if(valueDate != 0){
                 task.setDate( new Date( valueDate ));
@@ -156,19 +156,19 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         String[] fields = {
             TaskContract.TaskEntry._ID,
             TaskContract.TaskEntry.COLUMN_NAME_TITLE,
-            TaskContract.TaskEntry.COLUMN_NAME_DECRTIPTION,
+            TaskContract.TaskEntry.COLUMN_NAME_DESCRIPTION,
             TaskContract.TaskEntry.COLUMN_NAME_DATE,
             TaskContract.TaskEntry.COLUMN_NAME_DONE
         };
 
         Cursor cursor = db.query(
-            TaskContract.TaskEntry.TABLE_NAME,                      // La tabla a consultar
-            fields,                                                 // los valores de las columnas que devolverá
-            TaskEntry.COLUMN_NAME_DONE+" = '0'",                      // Las columnas para la clausula WHERE
+            TaskContract.TaskEntry.TABLE_NAME,                                  // La tabla a consultar
+            fields,                                                             // los valores de las columnas que devolverá
+            TaskEntry.COLUMN_NAME_DONE+" = '0'",                       // Las columnas para la clausula WHERE
             null,                                                   // Los valores para la clausula  WHERE
-            null,                                                   // no agrupamos las filas (rows)
-            null,                                                   // no filtramos por grupos de filas
-            TaskContract.TaskEntry.COLUMN_NAME_DATE+" ASC"          // El criterio de ordenación
+            null,                                                      // no agrupamos las filas (rows)
+            null,                                                       // no filtramos por grupos de filas
+            TaskContract.TaskEntry.COLUMN_NAME_DATE+" ASC"             // El criterio de ordenación
         );
         return cursor;
     }
@@ -192,7 +192,7 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         // Nuevo valor para una columna
         ContentValues values = new ContentValues();
         values.put(TaskContract.TaskEntry.COLUMN_NAME_TITLE, task.getTitle());
-        values.put(TaskContract.TaskEntry.COLUMN_NAME_DECRTIPTION, task.getDescription());
+        values.put(TaskContract.TaskEntry.COLUMN_NAME_DESCRIPTION, task.getDescription());
         if(task.getDate() != null){
             values.put(TaskContract.TaskEntry.COLUMN_NAME_DATE, task.getDate().getTime());
         }

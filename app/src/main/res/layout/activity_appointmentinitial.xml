@@ -7,7 +7,17 @@
     android:background="@color/colorWhite">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></RelativeLayout>
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp">
+
+        <ImageView
+            android:id="@+id/imageView5Logo"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
+            android:visibility="visible"
+            />
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,32 +35,34 @@
             android:textColor="@color/white"
             android:textSize="15dp" />
 
+
         <TextView
-            android:paddingTop="30dp"
-            android:paddingLeft="10dp"
+            android:id="@+id/apmntmessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You have no appointments.
-Please add one using add button below"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/imageView5Logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="22dp"
-            android:textStyle="normal|bold"
-            android:textAlignment="center" />
+            android:paddingLeft="10dp"
+            android:paddingTop="30dp"
+            android:text="You have no appointments.
+Please add one using add button below"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="28sp"
+            android:textStyle="normal|bold" />
 
         <ImageButton
             android:id="@+id/addDocButton"
-            android:background="@color/colorPrimary"
-            android:contentDescription="@string/btn_addEC"
-            android:src="@drawable/ic_action_add"
-            android:onClick="addInitialAppoitnment"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="147dp"
-            android:layout_below="@+id/textView20"
-            android:layout_centerHorizontal="true" />
+            android:layout_below="@+id/apmntmessage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@color/colorPrimary"
+            android:contentDescription="@string/btn_addEC"
+            android:onClick="addInitialAppoitnment"
+            android:src="@drawable/ic_action_add" />
     </RelativeLayout>
 
 

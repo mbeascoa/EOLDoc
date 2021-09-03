@@ -104,7 +104,7 @@ public class PatientAddDoctorActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String doc_name=adapterView.getItemAtPosition(i).toString();
-                doc_id=docHashMap.get(doc_name);
+                doc_id = docHashMap.get(doc_name);
             }
 
             @Override
@@ -113,7 +113,7 @@ public class PatientAddDoctorActivity extends AppCompatActivity {
             }
         });
 
-        FetchDocSpecialityTask fetchDocSpecialityTask=new FetchDocSpecialityTask();
+        FetchDocSpecialityTask fetchDocSpecialityTask = new FetchDocSpecialityTask();
         fetchDocSpecialityTask.execute();
 
     }
@@ -365,10 +365,17 @@ public class PatientAddDoctorActivity extends AppCompatActivity {
                 String doctor_id=param[0];
                 String patient_id=param[1];
 
+                //En este caso nos da la relación de los asociados https://sheetdb.io/api/v1/38fj4irthplip/?sheet=patientdoctorassociation
+               // hay que reemplazar /? por ? para que aparezca esta URL
+                //https://sheetdb.io/api/v1/38fj4irthplip?sheet=patientdoctorassociation
 
-                Uri donationUri = Uri.parse(base_url).buildUpon().appendEncodedPath(PATH_PARAM).build();
+                Uri appUriParcial=Uri.parse(base_url).buildUpon().appendEncodedPath(PATH_PARAM).build();
+                String appUripar= appUriParcial.toString();
+                String appUri= appUripar.replaceAll("/?","?");
 
-                URL url = new URL(donationUri.toString());
+                URL url=new URL(appUri);
+
+
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("POST");

@@ -103,7 +103,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         sessionManager = new SessionManager(PatientMainActivity.this);
         HashMap<String, String> user = sessionManager.getUserDetails();
-        //System.out.println("Emer Contact from shared pref:"+emergencyContact.get(SessionManager.EMERGENCY_CONTACT));
+        //System.out.println("Emergency Contact from shared pref:"+ emergencyContact.get(SessionManager.EMERGENCY_CONTACT));
         //contactNo=emergencyContact.get(SessionManager.EMERGENCY_CONTACT);
         patient_id = user.get(SessionManager.KEY_ID);
         patient_name = user.get(SessionManager.KEY_NAME);
@@ -111,8 +111,8 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
         TextView name = (TextView) findViewById(R.id.username);
         name.setText(patient_name);
 
-        //fitbitToken = sessionManager.getFitbitToken();
-        //fitbitUid = sessionManager.getFitbitUid();
+        fitbitToken = sessionManager.getFitbitToken();
+        fitbitUid = sessionManager.getFitbitUid();
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -121,7 +121,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
 
 
-        /*  we take that part out until fitbit API works, eliminado para practica
+        // we take that part out until fitbit API works, eliminado para practica
 
         if (savedInstanceState == null) {
             Fragment fragment = new PatientDashboardFragment();
@@ -134,28 +134,29 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.patient_content_frame, fragment).commit();
         }
-         */
+        // we take that part out until fitbit API works, eliminado para practica
+
         verificarPermisos();
 
-        /*  eliminado para practica
+        // we take that part out until fitbit API works, eliminado para practica
         mShouldLog = false;
         mCountAccelUpdates = 0;
         mStartTimestamp = System.currentTimeMillis();
 
-        new AsyncTaskCheckEmergency().execute(Integer.parseInt(patient_id));
+        // new AsyncTaskCheckEmergency().execute(Integer.parseInt(patient_id));
 
-        Intent intent = new Intent(this, FallDetectService.class);
-        startService(intent);
+        //Intent intent = new Intent(this, FallDetectService.class);
+        // startService(intent);
 
-        registerReceiver(accelDataReceiver, new IntentFilter(FallDetectService.ACCEL_DATA_NOTIFICATION));
-        registerReceiver(fallDetectionReceiver, new IntentFilter(FallDetectService.FALL_NOTIFICATION));
+        //registerReceiver(accelDataReceiver, new IntentFilter(FallDetectService.ACCEL_DATA_NOTIFICATION));
+       // registerReceiver(fallDetectionReceiver, new IntentFilter(FallDetectService.FALL_NOTIFICATION));
 
         //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         //client = new GoogleApi. Builder(this).addApi(AppIndex.API).build();
         // implementation 'com.google.firebase:firebase-appindexing:20.0.0'   en build graddle
 
 
-         */
+        // we take that part out until fitbit API works, eliminado para practica
     }
 
 
@@ -298,8 +299,8 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
     protected void onResume() {
         super.onResume();
 
-        //PatientDashboardFragment patientFragment=(PatientDashboardFragment) getSupportFragmentManager().findFragmentById(R.id.patient_content_frame);
-        //patientFragment.updatePatientDashboard(fitbitToken,fitbitUid,currentDate);
+        PatientDashboardFragment patientFragment=(PatientDashboardFragment) getSupportFragmentManager().findFragmentById(R.id.patient_content_frame);
+        patientFragment.updatePatientDashboard(fitbitToken,fitbitUid,currentDate);
 
 
         /*Fragment frag=getSupportFragmentManager().findFragmentById(R.id.patient_content_frame);
@@ -363,7 +364,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
     }
 
-/*
+
     private BroadcastReceiver fallDetectionReceiver = new BroadcastReceiver() {
 
         @Override
@@ -399,7 +400,6 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
     };
 
 
- */
 
     public void sendSMS() {
         ArrayList<String> location = getLocation();
@@ -558,7 +558,7 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
     }
 
-    /*
+
     public class AsyncTaskCheckEmergency extends AsyncTask<Integer, String, ArrayList> {
 
         HttpResponse response;
@@ -633,5 +633,5 @@ public class PatientMainActivity extends AppCompatActivity implements PatientDas
 
     }
 
-     */
+
 }

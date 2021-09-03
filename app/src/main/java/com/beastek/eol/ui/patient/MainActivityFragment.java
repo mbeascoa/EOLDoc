@@ -119,7 +119,7 @@ public class MainActivityFragment extends Fragment implements UpdateAdapter {
             Task task = new Task();
             task.set_id( cursor.getInt( cursor.getColumnIndex( TaskEntry._ID )));
             task.setTitle( cursor.getString(cursor.getColumnIndex( TaskEntry.COLUMN_NAME_TITLE )) );
-            task.setDescription( cursor.getString(cursor.getColumnIndex( TaskEntry.COLUMN_NAME_DECRTIPTION )) );
+            task.setDescription( cursor.getString(cursor.getColumnIndex( TaskEntry.COLUMN_NAME_DESCRIPTION )) );
             Long valueDate = cursor.getLong(cursor.getColumnIndex( TaskEntry.COLUMN_NAME_DATE ));
             if(valueDate != 0){
                 task.setDate( new Date( valueDate ));

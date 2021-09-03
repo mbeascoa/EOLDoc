@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,7 +64,7 @@ public class PatientHealthRequestsFragment extends Fragment implements SwipeRefr
         HashMap<String, String> user = sessionManager.getUserDetails();
         pat_id = user.get(SessionManager.KEY_ID);
 
-        //fitbitSharedPref= PreferenceManager.getDefaultSharedPreferences(getActivity());
+       fitbitSharedPref= PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         Log.d("sleep",sessionManager.getFitbitSleepData());
         Log.d("heart",sessionManager.getFitbitHeartRateData());

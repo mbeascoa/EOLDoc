@@ -22,17 +22,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="5sp">
+
         <TextView
             android:id="@+id/firstname"
-            android:paddingLeft="20dp"
-            android:paddingRight="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:textAlignment="textEnd"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
             android:text="@string/firstname_label"
+            android:textAlignment="textEnd"
             android:textColor="@color/white"
-            android:textSize="20dp"/>1
+            android:textSize="20dp" />1
 
         <EditText
             android:id="@+id/firstnameET"
@@ -49,17 +50,18 @@
         android:layout_height="wrap_content"
         android:paddingTop="10sp"
         android:paddingBottom="5sp">
+
         <TextView
             android:id="@+id/lastname"
-            android:paddingLeft="20dp"
-            android:paddingRight="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:textAlignment="textEnd"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
             android:text="@string/lastname_label"
+            android:textAlignment="textEnd"
             android:textColor="@color/white"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/lastnameET"
@@ -75,17 +77,18 @@
         android:layout_height="wrap_content"
         android:paddingTop="10sp"
         android:paddingBottom="5sp">
+
         <TextView
             android:id="@+id/emailId"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
             android:paddingLeft="20dp"
             android:paddingRight="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:textAlignment="textEnd"
             android:text="@string/EmailID_label"
+            android:textAlignment="textStart"
             android:textColor="@color/white"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/emailIdET"
@@ -101,17 +104,18 @@
         android:layout_height="wrap_content"
         android:paddingTop="10sp"
         android:paddingBottom="5sp">
+
         <TextView
             android:id="@+id/contact"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
             android:paddingLeft="20dp"
             android:paddingRight="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:textAlignment="textEnd"
             android:text="@string/Contact_label"
+            android:textAlignment="textStart"
             android:textColor="@color/white"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/contactET"
@@ -127,17 +131,18 @@
         android:layout_height="wrap_content"
         android:paddingTop="10sp"
         android:paddingBottom="5sp">
+
         <TextView
             android:id="@+id/address"
-            android:paddingLeft="20dp"
-            android:paddingRight="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:textAlignment="textEnd"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
             android:text="@string/Address_label"
+            android:textAlignment="textStart"
             android:textColor="@color/white"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/addressET"
@@ -153,17 +158,18 @@
         android:layout_height="wrap_content"
         android:paddingTop="10sp"
         android:paddingBottom="5sp">
+
         <TextView
             android:id="@+id/relation"
-            android:paddingLeft="20dp"
-            android:paddingRight="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:textAlignment="textEnd"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
             android:text="@string/relation_label"
+            android:textAlignment="textStart"
             android:textColor="@color/white"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/relationET"
