@@ -25,6 +25,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/fragment_edit"
+        android:layout_marginTop="@dimen/top_margin_fragment_task"
+
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:name="com.beastek.eol.ui.patient.NewTaskActivityFragment"

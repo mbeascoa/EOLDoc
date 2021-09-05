@@ -68,6 +68,9 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         return id;
     }
 
+
+    // ======== OBTENER TODAS LAS TAREAS REALIZADAS  =================
+
     public Cursor getAll(){
         SQLiteDatabase db = this.getReadableDatabase();
         String[] fields = {
@@ -89,7 +92,8 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         );
         return cursor;
     }
-    // ======== OBTENER LAS TAREAS REALIZADAS  VALOR COLUMN_NAME_DONE A UNO=================
+    // ======== OBTENER LAS TAREAS REALIZADAS  VALOR COLUMN_NAME_DONE A UNO REALIZADAS DONE=================
+
     public Cursor getDone(){
         SQLiteDatabase db = this.getReadableDatabase();
         String[] fields = {

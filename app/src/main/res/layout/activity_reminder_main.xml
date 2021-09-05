@@ -31,18 +31,18 @@
                 android:layout_below="@+id/toolbar"
                 android:background="?attr/colorPrimary"
                 android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:tabIndicatorHeight="5dp"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager.widget.ViewPager
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/vpPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        </androidx.viewpager.widget.ViewPager>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:ignore="SpeakableTextPresentCheck"></androidx.viewpager.widget.ViewPager>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addTask"
@@ -50,8 +50,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/ic_add_white"
             app:backgroundTint="?attr/colorAccent"
-            android:src="@drawable/ic_add_white" />
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

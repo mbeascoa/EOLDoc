@@ -240,7 +240,7 @@
 
     <!-- fragment_new_task  en NewTaskActivity.class, using material design texinputlayout and textinput-->
     <string name="introduce_the_task_title">Introduce the task title</string>
-    <string name="task_title">Introduce the Task Title</string>
+    <string name="task_title">Task Title</string>
     <string name="introduce_task_description">Introduce a complete task description</string>
     <string name="lets_get_started">Lets get started!</string>
     <string name="gender">Gender</string>
@@ -249,6 +249,7 @@
     <string name="email_id">Email ID</string>
     <string name="date_of_birth">Date Of Birth</string>
     <string name="next">Next</string>
+    <string name="introduce_your_username">Introduce your username</string>
 
 
 </resources>

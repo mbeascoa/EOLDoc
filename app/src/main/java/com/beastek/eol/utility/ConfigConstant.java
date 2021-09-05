@@ -6,6 +6,7 @@ public class ConfigConstant {
     public static final String BASE_URL="https://sheetdb.io/api/v1/38fj4irthplip"; //https://sheetdb.io/api/v1/ahhtehepl6e9f";
     public static final String FITBIT_BASE_URL="http://52.206.7.24:8060";
     public static final String FITBIT_SUMMARY_ENDPOINT="health/activity/summary";
+
     public static final String DOC_APPOINTMENT_LIST_ENDPOINT="search?sheet=addappointment&D_ID=";  //dentro del menu doctor, los appointments que tiene de sus pacientes
     public static final String PAT_APPOINTMENT_LIST_ENDPOINT="search?sheet=addappointment&P_ID=";  // patient appointments list recycler view
     public static final String DOC_PATIENT_LIST_ENDPOINT="search?sheet=insertpatient&P_ID=";  //dentro del menu doctor la lista de los pacientes asignados

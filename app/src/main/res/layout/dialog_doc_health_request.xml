@@ -18,5 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/et_padding"
         android:layout_marginLeft="@dimen/et_padding"
+        android:hint="Introduce Health Request Description"
         android:minHeight="48dp" />
 </LinearLayout>

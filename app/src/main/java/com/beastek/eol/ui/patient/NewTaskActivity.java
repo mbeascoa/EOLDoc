@@ -11,15 +11,17 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
+
 
 import com.beastek.eol.R;
 import com.beastek.eol.data.TaskDBHelper;
@@ -27,23 +29,22 @@ import com.beastek.eol.model.Task;
 import com.beastek.eol.util.DateUtil;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.mobsandgeeks.saripaar.ValidationError;
-import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+
 
 import java.util.Calendar;
 import java.util.List;
 
 // Using SQLLite for keeping tasks.
 
-public class NewTaskActivity extends AppCompatActivity implements Validator.ValidationListener {
-
+public class NewTaskActivity extends AppCompatActivity {
+    // public class NewTaskActivity extends AppCompatActivity implements Validator.ValidationListener {
     private Calendar calendar;
-    private Validator validator;
-    @NotEmpty(messageResId = R.string.field_empty)
-    //private EditText titleTask;
+
     private TextInputLayout titleTaskInputLayout, descriptionTaskInputLayout, dateTaskInputLayout;
     private TextInputEditText titleTask, descriptionTask, dateView;
+
+    private View view;
+
 
 
     @Override
@@ -54,14 +55,12 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         titleTaskInputLayout = (TextInputLayout) findViewById(R.id.title_label);
-        //titleTask = (EditText) findViewById(R.id.title);
         titleTask = (TextInputEditText) findViewById(R.id.title);
-        descriptionTaskInputLayout= (TextInputLayout)findViewById(R.id.description_label);
-        descriptionTask= (TextInputEditText) findViewById(R.id.description);
-        dateTaskInputLayout= (TextInputLayout)findViewById(R.id.date_label);
-        dateView= (TextInputEditText) findViewById(R.id.date);
-        validator = new Validator(this);
-        validator.setValidationListener(this);
+        descriptionTaskInputLayout = (TextInputLayout) findViewById(R.id.description_label);
+        descriptionTask = (TextInputEditText) findViewById(R.id.description);
+        dateTaskInputLayout = (TextInputLayout) findViewById(R.id.date_label);
+        dateView = (TextInputEditText) findViewById(R.id.date);
+
     }
 
     // menu _ new_ task .xml  options ; save and cancel
@@ -78,8 +77,27 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
         if (id == R.id.action_cancel) {
             this.finish();
             return true;
-        }else if(id == R.id.action_save){
-            validator.validate();
+        } else if (id == R.id.action_save) {
+            //validator.validate();
+            titleTaskInputLayout = (TextInputLayout) findViewById(R.id.title_label);
+            titleTask = (TextInputEditText) findViewById(R.id.title);
+            descriptionTaskInputLayout = (TextInputLayout) findViewById(R.id.description_label);
+            descriptionTask = (TextInputEditText) findViewById(R.id.description);
+            if (!validateTitle()) {
+                return true;
+            }
+            if (!validateDescription()) {
+                return true;
+            }
+
+            Task task = new Task(titleTask.getText().toString(), descriptionTask.getText().toString(), null, false);
+            if (calendar != null) {
+                task.setDate(calendar.getTime());
+            }
+            SaveTask saveTask = new SaveTask(this);
+            saveTask.execute(task);
+            this.finish();
+
             return true;
         }
 
@@ -89,15 +107,15 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
     // when button DatePicker is pressed
     public void showDatePickerDialog(View v) {
         Calendar calendarTemp;
-        if(calendar == null) {
+        if (calendar == null) {
             calendarTemp = Calendar.getInstance();
-        }else{
+        } else {
             calendarTemp = this.calendar;
         }
         DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datepic, int year, int month, int day) {
-                if(calendar == null){
+                if (calendar == null) {
                     calendar = Calendar.getInstance();
                 }
                 calendar.set(Calendar.YEAR, year);
@@ -122,23 +140,23 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
     }
 
     //when SetAlarm Button is pressed.....goes to AlarmActivity.class
-    public void setAlarm(View v){
-        Intent intent=new Intent(NewTaskActivity.this,AlarmActivity.class);
+    public void setAlarm(View v) {
+        Intent intent = new Intent(NewTaskActivity.this, AlarmActivity.class);
         startActivity(intent);
     }
 
     // when image button is pressed TimePickerDialog
     public void showTimePickerDialog(View v) {
         Calendar calendarTemp;
-        if(calendar == null) {
+        if (calendar == null) {
             calendarTemp = Calendar.getInstance();
-        }else{
+        } else {
             calendarTemp = this.calendar;
         }
         TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int h, int m) {
-                if(calendar == null){
+                if (calendar == null) {
                     calendar = Calendar.getInstance();
                 }
                 calendar.set(Calendar.HOUR_OF_DAY, h);
@@ -152,61 +170,29 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
         timePickerDialog.show();
     }
 
-    public void updateTime(){
+    public void updateTime() {
 
-        if(calendar != null){
+        if (calendar != null) {
             dateView.setText(new DateUtil(this).parse(calendar.getTime()));
-        }else{
+        } else {
             dateView.setText("");
         }
     }
 
-    // once fields are validated...
-    @Override
-    public void onValidationSucceeded() {
-        titleTaskInputLayout = (TextInputLayout) findViewById(R.id.title_label);
-        titleTask = (TextInputEditText) findViewById(R.id.title);
-        descriptionTaskInputLayout= (TextInputLayout)findViewById(R.id.description_label);
-        descriptionTask= (TextInputEditText) findViewById(R.id.description);
-
-        Task task = new Task(titleTask.getText().toString(),descriptionTask.getText().toString(),null,false);
-        if( calendar != null ){
-            task.setDate(calendar.getTime());
-        }
-        SaveTask saveTask = new SaveTask(this);
-        saveTask.execute(task);
-        this.finish();
-    }
-
-    // once fields are NOT validated...check if it works on TextInputEditText also, was originally tested for EditText
-    @Override
-    public void onValidationFailed(List<ValidationError> errors) {
-        for (ValidationError error : errors) {
-            View view = error.getView();
-            String message = error.getCollatedErrorMessage(this);
-
-            // Display error messages ;)
-            if (view instanceof TextInputEditText) {
-                ((TextInputEditText) view).setError(message);
-            } else {
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-            }
-        }
-    }
 
     //saves task in sqlite using TaskDBHelper
     private class SaveTask extends AsyncTask<Task, Void, Boolean> {
 
         private Context context;
 
-        public SaveTask (Context context){
+        public SaveTask(Context context) {
             this.context = context;
         }
 
         @Override
         protected Boolean doInBackground(final Task... tasks) {
             int rowInserted = 0;
-            for(Task task: tasks) {
+            for (Task task : tasks) {
                 TaskDBHelper taskDBHelper = TaskDBHelper.getInstance(this.context);
                 Long newRowId = taskDBHelper.insert(task);
                 rowInserted += newRowId;
@@ -219,4 +205,70 @@ public class NewTaskActivity extends AppCompatActivity implements Validator.Vali
             super.onPostExecute(aBoolean);
         }
     }
+
+    //needed for TextWatcher
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
+
+    // textwatcher activity for TextIpuntValidation
+    private class ValidationTextWatcher implements TextWatcher {
+        private View view;
+        private ValidationTextWatcher(View view) {
+            this.view = view;
+        }
+
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+        public void afterTextChanged(Editable editable) {
+            switch (view.getId()) {
+                case R.id.title:
+                    validateTitle();
+                    break;
+                case R.id.description:
+                    validateDescription();
+                    break;
+            }
+        }
+    }
+
+    // Title Validation not empty
+    private boolean validateTitle() {
+        if (titleTask.getText().toString().trim().isEmpty()) {
+            titleTaskInputLayout.setError("Title is required");
+            requestFocus(titleTask);
+            return false;
+        }else if(titleTask.getText().toString().length() < 4){
+            titleTaskInputLayout.setError("Title can't be less than 4 letters");
+            requestFocus(titleTask);
+            return false;
+        }
+        else {
+            titleTaskInputLayout.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+
+    // Description Validation not empty
+    private boolean validateDescription() {
+        if (descriptionTask.getText().toString().trim().isEmpty()) {
+            descriptionTaskInputLayout.setError("Description is required");
+            requestFocus(descriptionTask);
+            return false;
+        }else if(descriptionTask.getText().toString().length() < 3){
+            descriptionTaskInputLayout.setError("Description can't be less than 6 letters");
+            requestFocus(descriptionTask);
+            return false;
+        }
+        else {
+            descriptionTaskInputLayout.setErrorEnabled(false);
+        }
+        return true;
+    }
+
 }

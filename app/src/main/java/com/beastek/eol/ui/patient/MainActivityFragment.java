@@ -124,6 +124,7 @@ public class MainActivityFragment extends Fragment implements UpdateAdapter {
             if(valueDate != 0){
                 task.setDate( new Date( valueDate ));
             }
+            // TASK SETTED TO DONE = 1,  IS BOOLEAN IN DEFINITION TASK = TRUE
             task.setDone( cursor.getInt(cursor.getColumnIndex( TaskEntry.COLUMN_NAME_DONE )) > 0);
             this.taskArrayAdapter.add(task);
             cursor.moveToNext();
@@ -149,6 +150,8 @@ public class MainActivityFragment extends Fragment implements UpdateAdapter {
         }
     }
 
+    // ---------GET ALL TASKS ---------------
+
     private class GetAllTasks extends AsyncTask<Void, Void, Cursor> {
 
         private UpdateAdapter updateAdapter;
@@ -171,6 +174,8 @@ public class MainActivityFragment extends Fragment implements UpdateAdapter {
         }
     }
 
+    // ---------GET DONE TASKS ---------------
+
     private class GetDoneTasks extends AsyncTask<Void, Void, Cursor> {
 
         private UpdateAdapter updateAdapter;
@@ -192,6 +197,9 @@ public class MainActivityFragment extends Fragment implements UpdateAdapter {
             updateAdapter.updateTaskArrayAdapter(cursor);
         }
     }
+
+
+    // ---------GET PENDING TASKS ---------------
 
     private class GetPendingTasks extends AsyncTask<Void, Void, Cursor> {
 

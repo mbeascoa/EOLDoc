@@ -139,9 +139,10 @@ public class PatientDetailActivity extends AppCompatActivity implements View.OnC
         dialogBuilder.setPositiveButton(getResources().getString(R.string.doc_health_req_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                //obtanining the patient id from the list array PatientData and the position
                 pat_id=PatientData.getInstance().get(position).getPatient_id();
                 String doctor_id=doc_id;
+                //gathering information from editText editTxtHealthReqDesc placed in the dialog box
                 String health_data_req=editTxtHealthReqDesc.getText().toString();
 
 

@@ -10,9 +10,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.beastek.eol.R;
 import com.beastek.eol.data.LoginInfo;
@@ -40,7 +43,7 @@ import java.net.URL;
 
 //página para hacer el LOGIN, viene del LaunchAtivity.class inicialmente
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText txtUsername, txtPassword;
 
@@ -62,6 +65,7 @@ public class LoginActivity extends Activity {
     private static final String TAG = LoginActivity.class.getSimpleName();
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +83,9 @@ public class LoginActivity extends Activity {
         //String uls =getgetString(R.string.msg_user_login_state);
         Toast.makeText(getApplicationContext(), "User Login State"+ session.isLoggedIn(), Toast.LENGTH_LONG).show();
         System.out.println("User login State" + session.isLoggedIn());
+        ImageView logo = (ImageView) findViewById(R.id.imagelogologin);
+        logo.setImageResource(R.drawable.img5);
+
         btnLogin = (Button) findViewById(R.id.login);
 
         //al presionar el botón de LOGIN , captura usuario, password, si es doctor o paciente,
@@ -114,6 +121,7 @@ public class LoginActivity extends Activity {
 
         });
     }
+
 
     /*Android SDK contiene una clase llamada JSONReader, que nos permite poder analizar y consumir los documentos JSON.
 

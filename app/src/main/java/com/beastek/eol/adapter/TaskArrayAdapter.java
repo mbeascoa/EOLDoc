@@ -37,16 +37,16 @@ public class TaskArrayAdapter extends ArrayAdapter<Task> {
         CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.done_item);
         checkBox.setChecked(task.isDone());
         TextView title = (TextView) convertView.findViewById(R.id.title_item);
-        TextView data = (TextView) convertView.findViewById(R.id.date_item);
+        TextView fecha = (TextView) convertView.findViewById(R.id.date_item);
 
         title.setText(task.getTitle());
         if( task.getDate() != null){
             DateUtil dateUtil = new DateUtil(getContext());
-            data.setText(dateUtil.parse(task.getDate()));
-            data.setVisibility(View.VISIBLE);
+            fecha.setText(dateUtil.parse(task.getDate()));
+            fecha.setVisibility(View.VISIBLE);
         }else{
-            data.setText("");
-            data.setVisibility(View.GONE);
+            fecha.setText("");
+            fecha.setVisibility(View.GONE);
         }
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override

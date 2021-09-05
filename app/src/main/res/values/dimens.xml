@@ -28,5 +28,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="dot">1px</dimen>
     <dimen name="corner_radius_textinput">4dp</dimen>
+    <dimen name="top_margin_fragment_task">55dp</dimen>
 
 </resources>

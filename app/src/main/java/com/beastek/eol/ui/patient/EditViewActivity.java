@@ -30,6 +30,7 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import java.util.Calendar;
 import java.util.List;
 
+// in this case we use the Editext instead od TextInputEdit, used in creating a new task, so the Validator library works perfectly
 public class EditViewActivity extends AppCompatActivity implements  Validator.ValidationListener{
 
     private Calendar calendar;
@@ -51,8 +52,8 @@ public class EditViewActivity extends AppCompatActivity implements  Validator.Va
         String tastId = intent.getStringExtra("id");
         task = TaskDBHelper.getInstance(this).getTask(tastId);
 
-        titleTask = (EditText) findViewById(R.id.title);
-        descriptionTask = (EditText) findViewById(R.id.description);
+        titleTask = (EditText) findViewById(R.id.title);   //eventhough it is defined as TextIputEditText
+        descriptionTask = (EditText) findViewById(R.id.description);  //eventhough it is defined as TextIputEditText
 
         titleTask.setText(task.getTitle());
         descriptionTask.setText(task.getDescription());
