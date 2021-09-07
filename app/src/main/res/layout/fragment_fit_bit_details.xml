@@ -42,9 +42,6 @@
                 android:layout_weight="2"
                 android:text="@string/fitbit_steps_title"/>
 
-
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -64,9 +61,6 @@
                 android:layout_weight="2"
                 android:text="@string/fitbit_heart_rate_title"/>
 
-
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -84,8 +78,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="@string/fitbit_calories_title"/>
-
-
 
         </LinearLayout>
 
@@ -107,9 +99,6 @@
                 android:layout_weight="2"
                 android:text="@string/fitbit_sleep_title"
                 android:textSize="14sp" />
-
-
-
 
         </LinearLayout>
 

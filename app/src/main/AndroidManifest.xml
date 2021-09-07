@@ -146,6 +146,7 @@
             android:name=".Extras.broadcast_receiver.RingtonePlayingService"
             android:enabled="true"></service>
 
+      <!-- ATTENTION:   See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <activity android:name=".Extras.fitbit.FitbitTokenResponse"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>

@@ -22,15 +22,23 @@ public class ConfigConstant {
     public static final String GET_PATIENT_REQUEST_DATA="doctor/healthDataRequestDetails";
     public static final String DOCTOR_LIST_ENDPOINT="search?sheet=insertdoctor&P_ID=";  //el paciente selecciona la lista de sus doctores
     public static final String ADD_APPOINTMENT_ENDPOINT="https://sheetdb.io/api/v1/38fj4irthplip?sheet=addappointment=";  //el paciente añade appointments post se incluye la BASE URL
-
+// public static final String FITBIT_AUTH_URL="https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=228BFB&redirect_uri=hospapp%3A%2F%2Fcallbackresponse&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800";
     public static final String FITBIT_AUTH_URL="https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=23BF7P&redirect_uri=https%3A%2F%2Ffinish&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800";
     public static final String FITBIT_AUTH2_CLIENT="23BF7P";
+    //para conseguir el code  --response type code, si se quiere el token se pone response type token
+    //https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=23BF7P&redirect_uri=https%3A%2F%2Ffinish&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800";
+
+    // access_token=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM0JGN1AiLCJzdWIiOiI5Sk1NWU0iLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJwcm8gcm51dCByc2xlIiwiZXhwIjoxNjMxMjcyODExLCJpYXQiOjE2MzA4NzEyNzN9.wfNdURMQsFS4QnCxjrz-RlsBK5bTxTVusxY-kncCr-o&user_id=9JMMYM&scope=profile+location+heartrate+social+settings+activity+nutrition+sleep+weight&token_type=Bearer&expires_in=401538
+    // 23BF7P:4d4ea6fd400198a2ce5784f49e6d66da  pasarlo  a BASE64 encoded
+    //  MjNCRjdQOjRkNGVhNmZkNDAwMTk4YTJjZTU3ODRmNDllNmQ2NmRh     client:Secret ya pasado a BASE64 encoded
+    // https://api.fitbit.com/oauth2/token
+    //Authorization Basic MjNCRjdQOjRkNGVhNmZkNDAwMTk4YTJjZTU3ODRmNDllNmQ2NmRh  un espacio en blanco entre Basic y la cadena de texto.
     public static final String FITBIT_CLIENT_SECRET ="4d4ea6fd400198a2ce5784f49e6d66da";
     public static final String FITBIT_REDIRECT_URL ="https://finished";
     public static final String FITBIT_AUTHORIZATION_URI= "https://www.fitbit.com/oauth2/authorize";
     public static final String FITBIT_ACCESS_RENEW_TOKEN_REQUEST_URI= "https://api.fitbit.com/oauth2/token";
 
-    public static final String PACKAGE_CUSTOM_TAB = "com.android.chrome";
+    public static final String PACKAGE_CUSTOM_TAB = "com.android.chrome";  // se abre el custom tab para recoger el token de fitbit
 
     public static final String insertDoctor = "?sheet=insertdoctor";
     public static final String insertPatient = "?sheet=insertpatient";

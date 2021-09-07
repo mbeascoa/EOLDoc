@@ -23,6 +23,22 @@ public class FitbitTokenResponse extends AppCompatActivity {
     String respStrUrl;
     String LOG_TAG=FitbitTokenResponse.class.getSimpleName();
 
+    /*
+    DENTRO del manifest.xml
+
+    <!-- ATTENTION:   See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <activity android:name=".Extras.fitbit.FitbitTokenResponse"
+            android:theme="@style/NoActionBarTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="hospapp" android:host="callbackresponse"/>
+            </intent-filter>
+        </activity>
+
+     */
+
     @Override
     protected void onNewIntent(Intent intent) {
         respStrUrl = intent.getDataString();

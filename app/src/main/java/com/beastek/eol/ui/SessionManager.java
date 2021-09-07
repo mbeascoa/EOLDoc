@@ -93,6 +93,8 @@ public class SessionManager
 
     }
 
+    //  --------    F   I   T   B   I   T    ----------
+
     //Establecemos los datos de Fitbit FITBIT_SLEEP_DATA, FITBIT_CALORIES_DATA, FITBIT_HEART_RATE_DATA,
     // FITBIT_STEPS_DATA
     public void setFitbitData(String sleep_data,String calories,String heart_rate,String steps){
@@ -145,6 +147,7 @@ public class SessionManager
     }
 
 
+        //   C H E C K L O G I N
     public void checkLogin()
     {
         System.out.println("Dentro de  checklogin");

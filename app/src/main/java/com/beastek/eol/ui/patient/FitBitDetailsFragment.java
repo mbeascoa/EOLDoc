@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,7 +25,7 @@ import com.beastek.eol.R;
 import com.beastek.eol.ui.SessionManager;
 import com.beastek.eol.utility.ConfigConstant;
 
-
+// fitbit login y logout using custom tabs
 public class FitBitDetailsFragment extends Fragment {
 
 
@@ -88,7 +89,7 @@ public class FitBitDetailsFragment extends Fragment {
                 .build();
 
         isAuthorized=sessionManager.hasFitbitToken();
-
+        // si no est{a autorizado por fitbit sale el botón de fitbit login, en caso contrario fitbit logout
         if(!isAuthorized){
             btnLogin.setVisibility(View.VISIBLE);
             btnLogout.setVisibility(View.INVISIBLE);
@@ -103,6 +104,7 @@ public class FitBitDetailsFragment extends Fragment {
             public void onClick(View view) {
                 if(!isAuthorized){
                     String fitbit_auth_url=ConfigConstant.FITBIT_AUTH_URL;
+                    //https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=23BF7P&redirect_uri=https%3A%2F%2Ffinish&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800";
                     customTabsIntent.launchUrl(getActivity(),Uri.parse(fitbit_auth_url));
                 }else{
                     Log.d("Log","Already logged in");
@@ -119,6 +121,10 @@ public class FitBitDetailsFragment extends Fragment {
     }
 
 
+
+
+
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -132,8 +138,6 @@ public class FitBitDetailsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-
     }
 
 }
